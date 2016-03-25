@@ -1,6 +1,11 @@
 ﻿.message {
-  color: #000;
+  color: #333;
   font-size: 20;
   horizontal-align: center;
   padding:20;
+}
+
+.blueBtn {
+    background-color: #3489db;
+    color: #fff;
 }

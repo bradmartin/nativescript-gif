@@ -17,7 +17,7 @@ function onSrcPropertyChanged(data: dependencyObservable.PropertyChangeData) {
 }
 
 // register the setNativeValue callback
-(<proxy.PropertyMetadata>Common.Gif.gifSourceProperty.metadata).onSetNativeValue = onGifSourcePropertyChanged;
+(<proxy.PropertyMetadata>Common.Gif.gifSourceProperty.metadata).onSetNativeValue = onSrcPropertyChanged;
 
 export class Gif extends Common.Gif {
     private _android: pl.droidsonroids.gif.GifImageView;

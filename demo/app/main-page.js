@@ -1,7 +1,7 @@
 "use strict";
 
 var observable = require('data/observable');
-var gif = require("./gif.js");
+var gif = require("nativescript-gif");
 var data = new observable.Observable({});
 
 var gifList = [
@@ -31,7 +31,6 @@ exports.gifLoaded = gifLoaded;
 function stopGif(args) {
     console.log('stop');
     var gifView = page.getViewById('myGif');
-    // gifView.stop();// this won't work since it's not the native GifDrawable
     gifView.stop();
 }
 exports.stopGif = stopGif;
@@ -51,10 +50,10 @@ function randomGif(args) {
     var gifView = page.getViewById('myGif');
     console.log('gifView.android: ' + gifView.android);
     gifView.src = rand.path;
-    getNumberOfFrames(gifView);
+    // getNumberOfFrames(gifView);
 }
 exports.randomGif = randomGif;
 
 function getNumberOfFrames(gifView) {
-    console.log(gifView.drawable.getNumberOfFrames());    
+    console.log(gifView.getNumberOfFrames());    
 }
