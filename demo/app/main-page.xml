@@ -1,0 +1,12 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd"
+      xmlns:Gif="./gif" loaded="pageLoaded">
+  <StackLayout>
+     <Label text="Gifs rule the world." class="message" textWrap="true"/>
+    <Gif:Gif src="~/gifs/bugs.gif" id="myGif" loaded="gifLoaded" height="200" />
+    <Label text="{{ gifSrc }}" textWrap="true" />
+    <button text="Start" tap="startGif" />
+    <button text="Stop" tap="stopGif" />
+    <button text="Random Gif" tap="randomGif" />
+    <button text="MetaData" tap="getMetaData" />
+  </StackLayout> 
+</Page>  
