@@ -3,16 +3,20 @@
  */
 declare module "gif" {
     import dependencyObservable = require("ui/core/dependency-observable");
-    import view = require("ui/core/view");
+    import image = require("ui/image");
     import gifSource = require("gif-source");
 
     /**
      * Represents a class that provides functionality for loading gif(s).
      */
-    export class Gif extends view.View {
+    export class Gif extends image.Image {
         public static srcProperty: dependencyObservable.Property;
         public static imageSourceProperty: dependencyObservable.Property;
         public static isLoadingProperty: dependencyObservable.Property;
+
+        public stop(): void;
+
+        public start(): void;
         
         /**
          * Gets the native [android widget](https://github.com/koral--/android-gif-drawable) that represents the user interface for this component. Valid only when running on Android OS.

@@ -1,8 +1,9 @@
 import definition = require("gif");
 import dependencyObservable = require("ui/core/dependency-observable");
 import proxy = require("ui/core/proxy");
+import image = require("ui/image");
 import view = require("ui/core/view");
-import gifSource = require("./gif-source");
+//import gifSource = require("./gif-source");
 import platform = require("platform");
 import utils = require("utils/utils");
 import fs = require("file-system");
@@ -23,7 +24,8 @@ function onSrcPropertyChanged(data: dependencyObservable.PropertyChangeData) {
 
     if (types.isString(value)) {
         value = value.trim();
-        gif.gifSource = null;
+    }
+/*        gif.gifSource = null;
         gif["_url"] = value;
 
         gif._setValue(Gif.isLoadingProperty, true);
@@ -42,10 +44,10 @@ function onSrcPropertyChanged(data: dependencyObservable.PropertyChangeData) {
     } else if (value instanceof gifSource.GifSource) {
         // Support binding the imageSource trough the src property
         gif.gifSource = value;
-    }
+    } */
 }
 
-export class Gif extends view.View implements definition.Gif {
+export class Gif extends image.Image implements definition.Gif {
 
     public static srcProperty = new dependencyObservable.Property(SRC, GIF,
         new proxy.PropertyMetadata(undefined, dependencyObservable.PropertyMetadataSettings.None, onSrcPropertyChanged));
@@ -59,6 +61,14 @@ export class Gif extends view.View implements definition.Gif {
 
     constructor() {
         super();
+    }
+
+    public stop(): void {
+
+    }
+
+    public start(): void {
+
     }
 
     get gifSource(): gifSource.GifSource {

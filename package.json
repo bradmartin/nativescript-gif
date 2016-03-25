@@ -31,6 +31,13 @@
 		"name": "Brad Martin",
 		"email": "bradwaynemartin@gmail.com"
 	},
+	"contributors": [
+		{
+			"name": "Nathanael Anderson",
+			"email": "nathan@master-technology.com",
+			"url": "https://github.com/NathanaelA"
+		}
+	],
 	"bugs": {
 		"url": "https://github.com/bradmartin/nativescript-gif/issues"
 	},

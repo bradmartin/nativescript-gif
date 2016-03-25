@@ -32,15 +32,14 @@ function stopGif(args) {
     console.log('stop');
     var gifView = page.getViewById('myGif');
     // gifView.stop();// this won't work since it's not the native GifDrawable
-    gifView.drawable.stop();
+    gifView.stop();
 }
 exports.stopGif = stopGif;
 
 function startGif(args) {
     console.log('start');
     var gifView = page.getViewById('myGif');
-    // gifView.start();// this won't work since it's not the native GifDrawable
-    gifView.drawable.start();
+    gifView.start();
 }
 exports.startGif = startGif;
 

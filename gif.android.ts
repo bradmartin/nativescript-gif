@@ -22,7 +22,7 @@ function onSrcPropertyChanged(data: dependencyObservable.PropertyChangeData) {
 export class Gif extends Common.Gif {
     private _android: pl.droidsonroids.gif.GifImageView;
     private _androidViewId: number;
-    private drawable: pl.droidsonroids.gif.GifDrawable;
+    private _drawable: pl.droidsonroids.gif.GifDrawable;
 
     constructor() {
         super();
@@ -57,18 +57,26 @@ export class Gif extends Common.Gif {
                     this.src = currentPath + '/' + this.src;
                 }
 
-                this.drawable = new pl.droidsonroids.gif.GifDrawable(this.src);
+                this._drawable = new pl.droidsonroids.gif.GifDrawable(this.src);
 
             }
 
-            this.drawable = new pl.droidsonroids.gif.GifDrawable(this.src);
+            this._drawable = new pl.droidsonroids.gif.GifDrawable(this.src);
 
         } else {
             console.log("No src property set for the Gif");
         }
 
-        this._android.setImageDrawable(this.drawable);
+        this._android.setImageDrawable(this._drawable);
 
+    }
+
+    public stop(): void {
+        this._drawable.stop();
+    }
+
+    public start(): void {
+        this._drawable.start();
     }
 
 }

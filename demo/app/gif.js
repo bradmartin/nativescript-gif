@@ -44,14 +44,20 @@ var Gif = (function (_super) {
                 if (this.src[0] !== '/') {
                     this.src = currentPath + '/' + this.src;
                 }
-                this.drawable = new pl.droidsonroids.gif.GifDrawable(this.src);
+                this._drawable = new pl.droidsonroids.gif.GifDrawable(this.src);
             }
-            this.drawable = new pl.droidsonroids.gif.GifDrawable(this.src);
+            this._drawable = new pl.droidsonroids.gif.GifDrawable(this.src);
         }
         else {
             console.log("No src property set for the Gif");
         }
-        this._android.setImageDrawable(this.drawable);
+        this._android.setImageDrawable(this._drawable);
+    };
+    Gif.prototype.stop = function () {
+        this._drawable.stop();
+    };
+    Gif.prototype.start = function () {
+        this._drawable.start();
     };
     return Gif;
 }(Common.Gif));
