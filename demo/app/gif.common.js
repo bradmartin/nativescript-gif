@@ -8,7 +8,7 @@ var dependencyObservable = require("ui/core/dependency-observable");
 var proxy = require("ui/core/proxy");
 var view = require("ui/core/view");
 var image = require("ui/image");
-// var gifSource = require("./gif-source");
+//var gifSource = require("./gif-source");
 var platform = require("platform");
 var types = require("utils/types");
 var SRC = "src";
@@ -40,13 +40,17 @@ function onSrcPropertyChanged(data) {
     // else if (value instanceof gifSource.GifSource) {
     //     gif.gifSource = value;
     // }
-    }
-}
+        }
+                }
 var Gif = (function (_super) {
     __extends(Gif, _super);
     function Gif() {
         _super.call(this);
     }
+    Gif.prototype.stop = function () {
+    };
+    Gif.prototype.start = function () {
+    };
     Object.defineProperty(Gif.prototype, "gifSource", {
         get: function () {
             return this._getValue(Gif.gifSourceProperty);

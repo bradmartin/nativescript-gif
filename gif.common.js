@@ -45,6 +45,10 @@ var Gif = (function (_super) {
     function Gif() {
         _super.call(this);
     }
+    Gif.prototype.stop = function () {
+    };
+    Gif.prototype.start = function () {
+    };
     Object.defineProperty(Gif.prototype, "gifSource", {
         get: function () {
             return this._getValue(Gif.gifSourceProperty);
