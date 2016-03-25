@@ -45,7 +45,7 @@ function onSrcPropertyChanged(data: dependencyObservable.PropertyChangeData) {
     }
 }
 
-export class Gif extends imageCommon.Image implements definition.Gif {
+export class Gif extends view.View implements definition.Gif {
 
     public static srcProperty = new dependencyObservable.Property(SRC, GIF,
         new proxy.PropertyMetadata(undefined, dependencyObservable.PropertyMetadataSettings.None, onSrcPropertyChanged));

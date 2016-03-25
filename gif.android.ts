@@ -7,25 +7,14 @@ import fs = require("file-system");
 
 global.moduleMerge(Common, exports);
 
-// function onSrcPropertyChanged(data: dependencyObservable.PropertyChangeData) {
-//     var gif = <Gif>data.object;
-//     if (!gif.android) {
-//         return;
-//     }
-
-//     gif.android.setChecked(data.newValue);
-// }
-
-function onGifSourcePropertyChanged(data: dependencyObservable.PropertyChangeData) {
+function onSrcPropertyChanged(data: dependencyObservable.PropertyChangeData) {
     var gif = <Gif>data.object;
     if (!gif.android) {
         return;
     }
 
-    gif._setNativeImage(data.newValue ? data.newValue.android : null);
+    // gif.android.setChecked(data.newValue);
 }
-
-var pl = pl;
 
 // register the setNativeValue callback
 (<proxy.PropertyMetadata>Common.Gif.gifSourceProperty.metadata).onSetNativeValue = onGifSourcePropertyChanged;
@@ -44,7 +33,7 @@ export class Gif extends Common.Gif {
     }
 
     public _createUI() {
-        this.gifImageView = new pl.droidsonroids.gif.GifImageView(this._context);
+        this._android = new pl.droidsonroids.gif.GifImageView(this._context);
 
         if (this.src) {
             console.log('SRC: ' + this.src);
