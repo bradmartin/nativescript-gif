@@ -1,13 +1,16 @@
 <Page xmlns="http://schemas.nativescript.org/tns.xsd"
       xmlns:Gif="nativescript-gif" loaded="pageLoaded">
+  <Page.actionBar>
+    <ActionBar title="Gifs" backgroundColor="#009688" color="#fff" />
+  </Page.actionBar>
   <StackLayout>
      <Label text="Gifs rule the world." class="message" textWrap="true"/>
-    <Gif:Gif src="~/gifs/bugs.gif" id="myGif" loaded="gifLoaded" height="200" />
+    <Gif:Gif src="~/gifs/swimming.gif" id="myGif" loaded="gifLoaded" height="200" />
     <Label text="{{ gifSrc }}" textWrap="true" />
     
-    <button class="blueBtn" text="Start" tap="startGif" />
-    <button class="blueBtn" text="Stop" tap="stopGif" />
-    <!--<button text="Random Gif" tap="randomGif" />-->
+    <button class="yellowBtn" text="Start" tap="startGif" />
+    <button class="yellowBtn" text="Stop" tap="stopGif" />
+    <button text="Random Gif" tap="randomGif" />
     <!--<button text="MetaData" tap="getMetaData" />-->
   </StackLayout> 
 </Page>  

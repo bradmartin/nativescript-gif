@@ -13,15 +13,14 @@ function onSrcPropertyChanged(data: dependencyObservable.PropertyChangeData) {
         return;
     }
 
-    // gif.android.setChecked(data.newValue);
+    gif.src = data.newValue;
 }
 
 // register the setNativeValue callback
-(<proxy.PropertyMetadata>Common.Gif.gifSourceProperty.metadata).onSetNativeValue = onSrcPropertyChanged;
+(<proxy.PropertyMetadata>Common.Gif.srcProperty.metadata).onSetNativeValue = onSrcPropertyChanged;
 
 export class Gif extends Common.Gif {
     private _android: pl.droidsonroids.gif.GifImageView;
-    private _androidViewId: number;
     private _drawable: pl.droidsonroids.gif.GifDrawable;
 
     constructor() {
@@ -61,7 +60,7 @@ export class Gif extends Common.Gif {
 
             }
 
-            this._drawable = new pl.droidsonroids.gif.GifDrawable(this.src);
+            // this._drawable = new pl.droidsonroids.gif.GifDrawable(this.src);
 
         } else {
             console.log("No src property set for the Gif");
@@ -77,6 +76,33 @@ export class Gif extends Common.Gif {
 
     public start(): void {
         this._drawable.start();
+    }
+
+    public reset(): void {
+        this._drawable.reset();
+    }    
+        
+    public getDuration(): number {
+        var duration = this._drawable.getDuration();
+        return duration;
+    }
+
+    public isRunning(): boolean {
+        var isRunning = this._drawable.isRunning();
+        return isRunning;
+    }
+
+    public setSpeed(factor: number): void {
+        this._drawable.setSpeed(factor);
+    }
+
+    public getNumberOfFrames(): void {
+        var frames = this._drawable.getNumberOfFrames();
+        return frames;
+    }
+
+    public recycle(): void {
+        this._drawable.recycle();
     }
 
 }
