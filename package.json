@@ -1,7 +1,7 @@
 {
 	"name": "nativescript-gif",
 	"version": "1.0.0",
-	"description": "NativeScript plugin to use .gifs in your app.",
+	"description": "NativeScript plugin to use .gifs",
 	"main": "gif.js",
 	"nativescript": {
 		"platforms": {
@@ -29,7 +29,8 @@
 	],
 	"author": {
 		"name": "Brad Martin",
-		"email": "bradwaynemartin@gmail.com"
+		"email": "bradwaynemartin@gmail.com",
+        "url": "https://github.com/bradmartin"
 	},
 	"contributors": [
 		{
