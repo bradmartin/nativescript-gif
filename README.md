@@ -11,7 +11,7 @@ NativeScript plugin to use .gifs
 
 ## Sample Screen
 
-![GifExample](screens/gifsample.gif)
+![GifExample](screens/sample.gif)
 
 
 ## API
