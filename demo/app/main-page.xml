@@ -1,5 +1,5 @@
 <Page xmlns="http://schemas.nativescript.org/tns.xsd"
-      xmlns:Gif="./nativescript-gif" 
+      xmlns:Gif="nativescript-gif" 
       xmlns:x="nativescript-statusbar" 
       loaded="pageLoaded">
       
@@ -14,7 +14,7 @@
     <Label text="Gifs rule the world." class="message" textWrap="true"/>
     
     <Gif:Gif src="https://media.giphy.com/media/13Crr6gkUCCEWA/giphy.gif" id="myGif" loaded="gifLoaded" height="200" />
-    <Gif:Gif src="https://media.giphy.com/media/13Crr6gkUCCEWA/giphy.gif" height="150" />
+    <Gif:Gif src="https://media2.giphy.com/media/1iAQLpW2DRW2k/200.gif" height="150" />
     
     <Label text="{{ gifSrc }}" textWrap="true" />    
     <button text="Start" tap="startGif" />
