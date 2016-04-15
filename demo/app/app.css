@@ -5,7 +5,9 @@
   padding:20;
 }
 
-.yellowBtn {
+button {
     background-color: #FF4081;
     color: #f1f1f1;
+    border-radius: 4;
+    margin: 4;
 }

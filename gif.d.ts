@@ -1,47 +1,77 @@
 /**
  * Contains the Gif class, which represents a gif widget.
  */
-declare module "gif" {
+declare module "nativescript-gif" {
     import dependencyObservable = require("ui/core/dependency-observable");
-    import image = require("ui/image");
     import gifSource = require("gif-source");
+    import * as view from "ui/core/view";
+
 
     /**
      * Represents a class that provides functionality for loading gif(s).
      */
-    export class Gif extends image.Image {
+    export class Gif extends view.View {
         public static srcProperty: dependencyObservable.Property;
-        public static imageSourceProperty: dependencyObservable.Property;
+        public static gifSourceProperty: dependencyObservable.Property;
         public static isLoadingProperty: dependencyObservable.Property;
 
+        /**
+         * starts playing the .gif
+         */
+        public start(): void;
+
+        /**
+         * stops playing the .gif
+         */
         public stop(): void;
 
-        public start(): void;
-        
+        /**
+         * Returns the number of frames in the current Gif         
+        */
+        public getNumberOfFrames(): number;
+
         /**
          * Gets the native [android widget](https://github.com/koral--/android-gif-drawable) that represents the user interface for this component. Valid only when running on Android OS.
          */
         android: any /* pl.droidsonroids.gif.GifImageView */;
 
         /**
-         * Gets the native iOS [Gifu](https://cocoapods.org/pods/Gifu) that represents the user interface for this component. Valid only when running on iOS.
+         * Gets the native iOS [FLAnimatedImageView](https://github.com/Flipboard/FLAnimatedImage) that represents the user interface for this component. Valid only when running on iOS.
          */
-        ios: any /* UIImageView */;
+        ios: any /* FLAnimatedImageView */;
 
         /**
-        * Gets or sets the gif source of the gif.
-        */
-        gifSource: gifSource.GifSource;
-
-
-        /**
-         * Gets or sets the source of the Gif. This can be either an URL string or a native image instance.
+         * Gets or sets the source of the Gif. This can be either an URL string or a native gif instance.
          */
         src: any;
+
+        /*
+         * Gets or sets the gif source of the Gif.
+        */
+
+        videoSource: gifSource.GifSource;
 
         /**
          * Gets a value indicating if the gif is currently loading
          */
-        isLoading: boolean;        
+        isLoading: boolean;
     }
+
+    /**
+        * Provides common options for creating a video
+        */
+    export interface Options extends view.Options {
+
+        /*
+        * Gets or set the video source of the gif.
+        */
+        gifSource: gifSource.GifSource;
+
+        /**
+         * Gets or sets the URL of the gif
+         */
+        src: string;
+    }
+
+
 }

@@ -10,7 +10,10 @@
       "demo/node_modules/tns-core-modules/tns-core-modules.d.ts",
       "gif.common.ts",
       "gif.android.ts", 
-      "gif.ios.ts"
+      "gif.ios.ts",
+      "gif-source/gif-source.common.ts",
+      "gif-source/gif-source.android.ts",
+      "gif-source/gif-source.ios.ts"
     ],
     "compileOnSave": false
 }

@@ -48,6 +48,7 @@ exports.stopGif = stopGif;
 function startGif(args) {
     console.log('start');
     var gifView = page.getViewById('myGif');
+    console.log('gifView: ' + gifView.ios);
     gifView.start();
 }
 exports.startGif = startGif;
@@ -66,9 +67,11 @@ function randomGif(args) {
 exports.randomGif = randomGif;
 
 function getNumberOfFrames(gifView) {
-    console.log('FRAMES: ' + gifView.getNumberOfFrames());
+    var x = gifView.getNumberOfFrames();
+    data.set('frames', x);
 }
 
 function getDuration(gifView) {
-    console.log('DURATION: ' + gifView.getDuration());
+    var x = gifView.getDuration();
+    data.set('duration', x);
 }

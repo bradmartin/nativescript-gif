@@ -1,13 +1,28 @@
 <Page xmlns="http://schemas.nativescript.org/tns.xsd"
-      xmlns:Gif="nativescript-gif" loaded="pageLoaded">
+      xmlns:Gif="./nativescript-gif" 
+      xmlns:x="nativescript-statusbar" 
+      loaded="pageLoaded">
+      
+      <x:StatusBar ios:barStyle="light" android:barStyle="#00695C" />
+      
   <Page.actionBar>
     <ActionBar title="Gifs" backgroundColor="#009688" color="#fff" />
   </Page.actionBar>
+  
   <StackLayout>
+  
     <Label text="Gifs rule the world." class="message" textWrap="true"/>
-    <Gif:Gif src="~/gifs/bill.gif" id="myGif" loaded="gifLoaded" height="200" />
+    
+    <Gif:Gif src="https://media.giphy.com/media/13Crr6gkUCCEWA/giphy.gif" id="myGif" loaded="gifLoaded" height="200" />
+    <Gif:Gif src="https://media.giphy.com/media/13Crr6gkUCCEWA/giphy.gif" height="150" />
+    
     <Label text="{{ gifSrc }}" textWrap="true" />    
-    <button class="yellowBtn" text="Start" tap="startGif" />
-    <button class="yellowBtn" text="Stop" tap="stopGif" />
+    <button text="Start" tap="startGif" />
+    <button text="Stop" tap="stopGif" />
+    
+    <Label text="{{ duration }}" textWrap="true" />
+    <Label text="{{ frames }}" textWrap="true" />
+    
   </StackLayout> 
+
 </Page>  

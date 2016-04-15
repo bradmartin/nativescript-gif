@@ -1,0 +1,11 @@
+{
+    "name" : "gif-source",
+    "main": "gif-source.js",
+    "version": "0.1.0",
+    "nativescript": {
+        "platforms": {
+            "android": "1.7.0",
+            "ios": "1.7.0"
+        }
+    }
+}

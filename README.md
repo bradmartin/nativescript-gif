@@ -1,20 +1,18 @@
 # NativeScript-Gif
 NativeScript plugin to use .gifs
 
-*Currently Android only, iOS is in the works.*
-
 *Current Limitation - only local .gif files for now.*
 
 Android Library | iOS CocoaPod
 --------------- | ------------
-[Koral-- / android-gif-drawable](https://github.com/koral--/android-gif-drawable) | [Gifu](https://cocoapods.org/pods/Gifu)
+[Koral-- / android-gif-drawable](https://github.com/koral--/android-gif-drawable) | [FLAnimatedImage by Flipboard](https://github.com/Flipboard/FLAnimatedImage)
 
 ## Installation 
 `npm install nativescript-gif`
 
-## Sample Screen
-
-![GifExample](screens/sample.gif)
+Android Screen | iOS Screen
+-------------- | ----------
+![GifExample](screens/sample.gif) | ![iOSSample](screens/iosGifs.gif)
 
 ## Usage
 
@@ -46,4 +44,5 @@ Android Library | iOS CocoaPod
 - provided to speed up freeing memory <small>*advanced usage - you shouldn't need this often*</small>
 
 #### Contributors
-- [NathanaelA](https://github.com/NathanaelA)
+- [NathanaelA](https://github.com/NathanaelA) - [@CongoCart](https://twitter.com/CongoCart)
+- [NathanWalker](https://github.com/NathanWalker) - [@wwwalkerrun](https://twitter.com/wwwalkerrun)
