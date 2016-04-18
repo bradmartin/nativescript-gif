@@ -13,8 +13,15 @@
   
     <Label text="Gifs rule the world." class="message" textWrap="true"/>
     
+    <!--<GridLayout rows="auto, auto" columns="auto, auto">
+      <Gif:Gif src="https://media.giphy.com/media/xTiTnvMb8gkmBvwFiM/giphy.gif"  row="0" col="0" />
+      <Gif:Gif src="https://media.giphy.com/media/BoPUZQRQEPogo/giphy.gif" row="0" col="1" />
+      <Gif:Gif src="https://media.giphy.com/media/13Crr6gkUCCEWA/giphy.gif" row="1" col="0" />
+      <Gif:Gif src="https://media2.giphy.com/media/1iAQLpW2DRW2k/200.gif" row="1" col="1" />
+    </GridLayout>-->
+    
     <Gif:Gif src="https://media.giphy.com/media/13Crr6gkUCCEWA/giphy.gif" id="myGif" loaded="gifLoaded" height="200" />
-    <!--<Gif:Gif src="https://media2.giphy.com/media/1iAQLpW2DRW2k/200.gif" height="150" width="200" />-->
+    <Gif:Gif src="https://media2.giphy.com/media/1iAQLpW2DRW2k/200.gif" />
     
     <Label text="{{ gifSrc }}" textWrap="true" />    
     <button text="Start" tap="startGif" />
@@ -23,6 +30,7 @@
     <Label text="{{ duration }}" textWrap="true" />
     <Label text="{{ frames }}" textWrap="true" />
     
-  </StackLayout> 
+  </StackLayout>
+  
 
 </Page>  

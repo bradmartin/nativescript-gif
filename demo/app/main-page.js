@@ -55,7 +55,7 @@ exports.startGif = startGif;
 
 function getFrames(args) {
     var gif = page.getViewById('myGif');
-    var frames = gif.getNumberOfFrames();
+    var frames = gif.getFrameCount();
     data.set('frames', frames);
 }
 exports.getFrames = getFrames;

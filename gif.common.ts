@@ -2,17 +2,13 @@
 /// <reference path="gif.d.ts" />
 
 import definition = require("nativescript-gif");
-// import gifSource = require("./gif-source/gif-source");
 import view = require("ui/core/view");
 import { PropertyMetadata } from "ui/core/proxy";
 import dependencyObservable = require("ui/core/dependency-observable");
 import platform = require("platform");
-import fs = require("file-system");
-import utils = require("utils/utils");
 import * as types from "utils/types";
 
 var SRC = "src";
-// var GIF_SOURCE = "gifSource";
 var GIF = "Gif";
 var ISLOADING = "isLoading";
 
@@ -23,43 +19,10 @@ function onSrcPropertyChanged(data: dependencyObservable.PropertyChangeData) {
     var gif = <Gif>data.object;
     var value = data.newValue;
 
-    console.log('onSrcPropertyChanged: ' + value);
-
-    // gif.src = value;
-
-    // // if (types.isString(value)) {
-    // //     value = value.trim();
-    // //     gif.src = value;
-    // // }
-
-    // if (types.isString(value)) {
-    //     value = value.trim();
-    //     gif.gifSource = null;
-    //     gif["_url"] = value;
-
-    //     gif._setValue(Gif.isLoadingProperty, true);
-
-    //     if (utils.isFileOrResourcePath(value)) {
-    //         console.log('gif.common.ts 46: utils.isFileOrResourcepath(value: ):' + value);
-    //         gif.gifSource = gifSource.fromFileOrResource(value);
-    //         gif.src = value;
-    //         gif._setValue(Gif.isLoadingProperty, false);
-    //     } else {
-    //         console.log('gif.common.ts 48: gif["_url"] === :' + value);
-    //         if (gif["_url"] === value) {
-    //             gif.gifSource = gifSource.fromUrl(value);
-    //             gif.src = value;
-    //             gif._setValue(Gif.isLoadingProperty, false);
-    //         }
-    //     }
-    // }
-
-    // } else if (value instanceof gifSource.GifSource) {
-    //     gif.gifSource = value;
-    // } else {
-    //     gif.gifSource = gifSource.fromNativeSource(value);
-    // }
-
+    if (types.isString(value)) {
+        value = value.trim();
+        gif.src = value;
+    }
 }
 
 export class Gif extends view.View implements definition.Gif {
@@ -67,24 +30,12 @@ export class Gif extends view.View implements definition.Gif {
     public static srcProperty = new dependencyObservable.Property(SRC, GIF,
         new PropertyMetadata(undefined, dependencyObservable.PropertyMetadataSettings.None, onSrcPropertyChanged));
 
-    // // None on purpose. for iOS we trigger it manually if needed. Android layout handles it.
-    // public static gifSourceProperty = new dependencyObservable.Property(GIF_SOURCE, GIF,
-    //     new PropertyMetadata(undefined, dependencyObservable.PropertyMetadataSettings.None));
-
     public static isLoadingProperty = new dependencyObservable.Property(ISLOADING, GIF,
         new PropertyMetadata(false, dependencyObservable.PropertyMetadataSettings.None));
 
     constructor(options?: definition.Options) {
         super(options);
     }
-
-    // get gifSource(): gifSource.GifSource {
-    //     return this._getValue(Gif.gifSourceProperty);
-    // }
-
-    // set gifSource(value: gifSource.GifSource) {
-    //     this._setValue(Gif.gifSourceProperty, value);
-    // }
 
     get src(): any {
         return this._getValue(Gif.srcProperty);
@@ -95,22 +46,6 @@ export class Gif extends view.View implements definition.Gif {
 
     get isLoading(): boolean {
         return this._getValue(Gif.isLoadingProperty);
-    }
-
-    // public _setNativeGif(nativeGif: any) {
-    //     //
-    // }
-
-    public stop(): void {
-
-    }
-
-    public start(): void {
-
-    }
-
-    public getNumberOfFrames(): void {
-
     }
 
 }

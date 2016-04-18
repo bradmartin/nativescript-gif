@@ -3,7 +3,6 @@
  */
 declare module "nativescript-gif" {
     import dependencyObservable = require("ui/core/dependency-observable");
-    // import gifSource = require("gif-source");
     import * as view from "ui/core/view";
 
 
@@ -12,9 +11,7 @@ declare module "nativescript-gif" {
      */
     export class Gif extends view.View {
         public static srcProperty: dependencyObservable.Property;
-        public static gifSourceProperty: dependencyObservable.Property;
         public static isLoadingProperty: dependencyObservable.Property;
-
 
          /**
          * Gets the native [android widget](https://github.com/koral--/android-gif-drawable) that represents the user interface for this component. Valid only when running on Android OS.
@@ -31,44 +28,16 @@ declare module "nativescript-gif" {
          */
         src: any;
 
-        /*
-         * Gets or sets the gif source of the Gif.
-        */
-
-        // gifSource: gifSource.GifSource;
-
         /**
          * Gets a value indicating if the gif is currently loading
          */
-        isLoading: boolean;
-        
-        // /**
-        //  * starts playing the .gif
-        //  */
-        // public start(): void;
-
-        // /**
-        //  * stops playing the .gif
-        //  */
-        // public stop(): void;
-
-        // /**
-        //  * Returns the number of frames in the current Gif         
-        // */
-        // public getNumberOfFrames(): void;
-
-       
+        isLoading: boolean;       
     }
 
-    /**
-        * Provides common options for creating a video
-        */
+   /**
+   * Provides common options for creating a video
+   */
     export interface Options extends view.Options {
-
-        /*
-        * Gets or set the video source of the gif.
-        */
-        // gifSource: gifSource.GifSource;
 
         /**
          * Gets or sets the URL of the gif

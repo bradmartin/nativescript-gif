@@ -70,35 +70,49 @@ export class Gif extends Common.Gif {
 
     }
 
+    /**
+     * Stop playing the .gif
+     */
     public stop(): void {
         this._drawable.stop();
     }
 
+    /**
+     * Start playing the .gif
+     */
     public start(): void {
         this._drawable.start();
     }
 
+    /**
+     * Check if the .gif is playing.
+     * @returns  Boolean
+     */
+    public isPlaying(): boolean {
+        var isPlaying = this._drawable.isRunning();
+        return isPlaying;
+    }
+
+    /**
+     * Get the frame count for a .gif.
+     * @returns  Number of frames.
+     */
+    public getFrameCount(): number {
+        var frames = this._drawable.getNumberOfFrames();
+        return frames;
+    }
+
     public reset(): void {
         this._drawable.reset();
-    }    
-        
+    }
+
     public getDuration(): number {
         var duration = this._drawable.getDuration();
         return duration;
     }
 
-    public isRunning(): boolean {
-        var isRunning = this._drawable.isRunning();
-        return isRunning;
-    }
-
     public setSpeed(factor: number): void {
         this._drawable.setSpeed(factor);
-    }
-
-    public getNumberOfFrames(): void {
-        var frames = this._drawable.getNumberOfFrames();
-        return frames;
     }
 
     public recycle(): void {
