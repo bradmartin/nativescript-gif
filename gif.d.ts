@@ -68,7 +68,7 @@ declare module "nativescript-gif" {
         /*
         * Gets or set the video source of the gif.
         */
-        gifSource: gifSource.GifSource;
+        // gifSource: gifSource.GifSource;
 
         /**
          * Gets or sets the URL of the gif

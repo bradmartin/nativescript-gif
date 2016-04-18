@@ -2,6 +2,7 @@
 /// <reference path="gif.d.ts" />
 
 import definition = require("nativescript-gif");
+// import gifSource = require("./gif-source/gif-source");
 import view = require("ui/core/view");
 import { PropertyMetadata } from "ui/core/proxy";
 import dependencyObservable = require("ui/core/dependency-observable");
@@ -11,7 +12,7 @@ import utils = require("utils/utils");
 import * as types from "utils/types";
 
 var SRC = "src";
-var GIF_SOURCE = "gifSource";
+// var GIF_SOURCE = "gifSource";
 var GIF = "Gif";
 var ISLOADING = "isLoading";
 
@@ -24,14 +25,12 @@ function onSrcPropertyChanged(data: dependencyObservable.PropertyChangeData) {
 
     console.log('onSrcPropertyChanged: ' + value);
 
-    gif.src = value;
+    // gif.src = value;
 
-    // if (types.isString(value)) {
-    //     value = value.trim();
-    //     gif.src = value;
-    // }
-
-
+    // // if (types.isString(value)) {
+    // //     value = value.trim();
+    // //     gif.src = value;
+    // // }
 
     // if (types.isString(value)) {
     //     value = value.trim();
@@ -41,14 +40,20 @@ function onSrcPropertyChanged(data: dependencyObservable.PropertyChangeData) {
     //     gif._setValue(Gif.isLoadingProperty, true);
 
     //     if (utils.isFileOrResourcePath(value)) {
+    //         console.log('gif.common.ts 46: utils.isFileOrResourcepath(value: ):' + value);
     //         gif.gifSource = gifSource.fromFileOrResource(value);
+    //         gif.src = value;
     //         gif._setValue(Gif.isLoadingProperty, false);
     //     } else {
+    //         console.log('gif.common.ts 48: gif["_url"] === :' + value);
     //         if (gif["_url"] === value) {
     //             gif.gifSource = gifSource.fromUrl(value);
+    //             gif.src = value;
     //             gif._setValue(Gif.isLoadingProperty, false);
     //         }
     //     }
+    // }
+
     // } else if (value instanceof gifSource.GifSource) {
     //     gif.gifSource = value;
     // } else {
@@ -92,9 +97,9 @@ export class Gif extends view.View implements definition.Gif {
         return this._getValue(Gif.isLoadingProperty);
     }
 
-    public _setNativeGif(nativeGif: any) {
-        //
-    }
+    // public _setNativeGif(nativeGif: any) {
+    //     //
+    // }
 
     public stop(): void {
 

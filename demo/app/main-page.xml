@@ -14,12 +14,12 @@
     <Label text="Gifs rule the world." class="message" textWrap="true"/>
     
     <Gif:Gif src="https://media.giphy.com/media/13Crr6gkUCCEWA/giphy.gif" id="myGif" loaded="gifLoaded" height="200" />
-    <Gif:Gif src="https://media2.giphy.com/media/1iAQLpW2DRW2k/200.gif" height="150" />
+    <!--<Gif:Gif src="https://media2.giphy.com/media/1iAQLpW2DRW2k/200.gif" height="150" width="200" />-->
     
     <Label text="{{ gifSrc }}" textWrap="true" />    
     <button text="Start" tap="startGif" />
     <button text="Stop" tap="stopGif" />
-    
+    <button text="Frame Count" tap="getFrames" />
     <Label text="{{ duration }}" textWrap="true" />
     <Label text="{{ frames }}" textWrap="true" />
     

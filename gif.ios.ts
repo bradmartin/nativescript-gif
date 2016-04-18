@@ -11,20 +11,26 @@ global.moduleMerge(Common, exports);
 
 declare var FLAnimatedImageView: any, FLAnimatedImage: any, NSData: any, NSURL: any, CGRectMake: any;
 
-function onSrcPropertyChanged(data: dependencyObservable.PropertyChangeData) {
+function onGifSourcePropertyChanged(data: dependencyObservable.PropertyChangeData) {
     var gif = <Gif>data.object;
     if (!gif.ios) {
         return;
     }
 
     /// This has the XML src property value    
-    console.log('onSrcPropertyChanged on gif.ios.ts: ' + data.newValue);
+    console.log('onGifSourcePropertyChanged on gif.ios.ts: ' + data.newValue);
 
     gif.src = data.newValue;
 
 }
+
+// function onGifSourcePropertyChanged(data: dependencyObservable.PropertyChangeData) {
+//     var gif = <Gif>data.object;
+//     gif._setNativeGif(data.newValue ? data.newValue.ios : null);
+// }
+
 // register the setNativeValue callback
-(<proxy.PropertyMetadata>Common.Gif.srcProperty.metadata).onSetNativeValue = onSrcPropertyChanged;
+(<proxy.PropertyMetadata>Common.Gif.srcProperty.metadata).onSetNativeValue = onGifSourcePropertyChanged;
 
 export class Gif extends Common.Gif {
     private _ios: FLAnimatedImageView;
@@ -33,68 +39,68 @@ export class Gif extends Common.Gif {
     constructor(options?: definition.Options) {
         super(options);
 
-        console.log('** CONSTRUCTOR **');
-        console.log('this: ' + this);
-        console.log('this._ios: ' + this._ios);
+        this._ios = FLAnimatedImageView.alloc().init();
+        console.log('-------- CONSTRUCTOR -------');
+    }
 
-        console.log(this.src);
+    public onLoaded() {
+        console.log('--------- ONLOADED ---------');
 
-            if (this.src) {
-                console.log('gif.ios.js SRC: ' + this.src);
+        super.onLoaded();
 
-                var isUrl = false;
+        if (this.src) {
+            console.log('ONLOADED: 135 gif.ios.ts: ' + this.src);
 
-                if (this.src.indexOf("://") !== -1) {
-                    if (this.src.indexOf('res://') === -1) {
-                        isUrl = true;
-                        console.log('isUrl: ' + isUrl);
-                    }
+            var isUrl = false;
+
+            if (this.src.indexOf("://") !== -1) {
+                if (this.src.indexOf('res://') === -1) {
+                    isUrl = true;
                 }
-
-                // NOT A REMOTE URL            
-                if (!isUrl) {
-                    var currentPath = fs.knownFolders.currentApp().path;
-
-                    if (this.src[1] === '/' && (this.src[0] === '.' || this.src[0] === '~')) {
-                        this.src = this.src.substr(2);
-                    }
-
-                    if (this.src[0] !== '/') {
-                        this.src = currentPath + '/' + this.src;
-                    }
-
-                    console.log('!isUrl this.src: ' + this.src);
-
-                    // this._drawable = new pl.droidsonroids.gif.GifDrawable(this.src);
-                }
-                else // Gif src is a remote Url
-                {
-                    let src = "'" + this.src + "'";
-                    console.log('is a remote url: ' + this.src);
-                    this._animatedImage = FLAnimatedImage.animatedImageWithGIFData(
-                        NSData.dataWithContentsOfURL(NSURL.URLWithString(
-                            src
-                        ))
-                    );
-
-                    this._ios = FLAnimatedImageView.alloc().init();
-                    this._ios.animatedImage = this._animatedImage;
-                    this._ios.frame = CGRectMake(0, 0, 100, 100);
-
-                }
-
             }
-            else {
-                console.log("No src property set for the Gif");
+
+            console.log('isUrl: ' + isUrl);
+
+            if (!isUrl) {
+                var currentPath = fs.knownFolders.currentApp().path;
+
+                if (this.src[1] === '/' && (this.src[0] === '.' || this.src[0] === '~')) {
+                    this.src = this.src.substr(2);
+                }
+
+                if (this.src[0] !== '/') {
+                    this.src = currentPath + '/' + this.src;
+                }
+
+                // TODO : add iOS local gif support
+
+            } else {
+
+                this._animatedImage = FLAnimatedImage.animatedImageWithGIFData(
+                    NSData.dataWithContentsOfURL(
+                        NSURL.URLWithString(this.src)
+                    )
+                );
+
+                this._ios = FLAnimatedImageView.alloc().init();
+                this._ios.animatedImage = this._animatedImage;
+                this._ios.frame = CGRectMake(0, 0, 100, 100);
             }
 
 
+            if (isNaN(this.width) || isNaN(this.height)) {
+                this.requestLayout();
+            }
 
+        } else {
+            throw new Error("Gif requires a src value");
+        }
     }
 
     get src(): any {
         return this._getValue(Gif.srcProperty);
     }
+
     set src(value: any) {
         this._setValue(Gif.srcProperty, value);
     }
@@ -109,11 +115,13 @@ export class Gif extends Common.Gif {
 
     public stop(): void {
         console.log('ios STOP');
+        console.log('STOP: this.ios = ' + this._ios);
         this._ios.stopAnimating();
     }
 
     public start(): void {
         console.log('ios START');
+        console.log('START: this.ios = ' + this._ios);
         this._ios.startAnimating();
     }
 
