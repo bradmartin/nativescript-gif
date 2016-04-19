@@ -15,7 +15,7 @@
   
     <Label text="Gifs rule the world." class="message" textWrap="true"/>
     
-    <GridLayout rows="140, 140, 140, 140, 140, 140" columns="*, *">
+    <!--<GridLayout rows="140, 140, 140, 140, 140, 140" columns="*, *">
     
       <Gif:Gif src="~/gifs/darthRide.gif" row="0" col="0" />
       <Gif:Gif src="https://media.giphy.com/media/BoPUZQRQEPogo/giphy.gif"  row="0" col="1" />
@@ -33,11 +33,11 @@
       
       <Gif:Gif src="~/gifs/hammer.gif" row="5" colSpan="2" />
 
-    </GridLayout>
+    </GridLayout>-->
     
 
     
-    <Gif:Gif src="https://media.giphy.com/media/xTiTnvMb8gkmBvwFiM/giphy.gif" id="myGif" loaded="gifLoaded" height="140" />
+    <Gif:Gif src="https://media4.giphy.com/media/BgBf6pW9qOgQU/200.gif" id="myGif" loaded="gifLoaded" height="140" />
     
     <button text="Start" tap="startGif" />
     <button text="Stop" tap="stopGif" />

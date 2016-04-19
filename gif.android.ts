@@ -4,6 +4,8 @@ import proxy = require("ui/core/proxy");
 import utils = require("utils/utils")
 import view = require("ui/core/view");
 import fs = require("file-system");
+import application = require("application");
+import * as http from "http";
 
 global.moduleMerge(Common, exports);
 
@@ -35,7 +37,6 @@ export class Gif extends Common.Gif {
         this._android = new pl.droidsonroids.gif.GifImageView(this._context);
 
         if (this.src) {
-            console.log('SRC: ' + this.src);
 
             var isUrl = false;
 
@@ -58,6 +59,38 @@ export class Gif extends Common.Gif {
 
                 this._drawable = new pl.droidsonroids.gif.GifDrawable(this.src);
 
+            } else {
+
+
+                try {
+                    http.getImage(this.src).then(function (r) {
+                        console.log('Image response: ' + r.android);
+                        
+                        var b = r.android;
+                        var bytes = b.getByteCount();
+                        console.log('bytes: ' + bytes);
+                        
+                        var buffer = java.nio.ByteBuffer.allocate(bytes);
+                        b.copyPixelsToBuffer(buffer);
+
+                        var array = buffer.array();
+                        console.log('array: ' + array);
+                        
+                        this._drawable = new pl.droidsonroids.gif.GifDrawable(array);
+                        console.log('this._drawable: ' + this._drawable);
+
+                    }, function (err) {
+                        console.log(err);
+                    });
+                } catch (ex) {
+                    console.log(ex);
+                }                
+                
+
+                // this._drawable = new pl.droidsonroids.gif.GifDrawable(contentResolver, url);
+
+                // this._drawable = new pl.droidsonroids.gif.GifDrawable(bis);
+
             }
 
             // this._drawable = new pl.droidsonroids.gif.GifDrawable(this.src);
@@ -69,6 +102,8 @@ export class Gif extends Common.Gif {
         this._android.setImageDrawable(this._drawable);
 
     }
+
+    
 
     /**
      * Stop playing the .gif

@@ -41,7 +41,7 @@ function stopGif(args) {
     var gifView = page.getViewById('myGif');
     gifView.stop();
 }
-exports.stopGif = stopGif;
+exports.stopGif = stopGif; 
 
 
 function startGif(args) {
