@@ -65,34 +65,37 @@ export class Gif extends Common.Gif {
                 //     android.os.StrictMode.setThreadPolicy(policy);
                 // }
 
-                /*** SUGGESTED APPROACH FROM LIBRARY AUTHOR *****/
+                // /*** SUGGESTED APPROACH FROM LIBRARY AUTHOR *****/
 
-                // // // String url = "https://media4.giphy.com/media/BgBf6pW9qOgQU/200.gif";
-                // // // URLConnection urlConnection = new URL(url).openConnection();
-                // // // urlConnection.connect();
-                // // // final int contentLength = urlConnection.getContentLength();
-                // // // ByteBuffer buffer = ByteBuffer.allocateDirect(contentLength);
-                // // // ReadableByteChannel channel = Channels.newChannel(urlConnection.getInputStream());
-                // // // while (buffer.remaining() > 0)
-                // // //     channel.read(buffer);
-                // // // channel.close();
-                // // // GifDrawable drawable = new GifDrawable(buffer);
+                // // // // String url = "https://media4.giphy.com/media/BgBf6pW9qOgQU/200.gif";
+                // // // // URLConnection urlConnection = new URL(url).openConnection();
+                // // // // urlConnection.connect();
+                // // // // final int contentLength = urlConnection.getContentLength();
+                // // // // ByteBuffer buffer = ByteBuffer.allocateDirect(contentLength);
+                // // // // ReadableByteChannel channel = Channels.newChannel(urlConnection.getInputStream());
+                // // // // while (buffer.remaining() > 0)
+                // // // //     channel.read(buffer);
+                // // // // channel.close();
+                // // // // GifDrawable drawable = new GifDrawable(buffer);
 
                 // var url = new java.net.URL(this.src);
                 // var urlConnection = url.openConnection();
                 // urlConnection.connect();
                 // var contentLength = urlConnection.getContentLength();
+                // console.log('contentLength: ' + contentLength);
                 // var buffer = java.nio.ByteBuffer.allocateDirect(contentLength);
+                // console.log('buffer: ' + buffer);
                 // var channel = java.nio.channels.Channels.newChannel(urlConnection.getInputStream());
+                // console.log('channel: ' + channel);
                 // while (buffer.remaining() > 0) {
                 //     channel.read(buffer);
                 // }
                 // channel.close();                
-
+                // console.log('channel close');
 
                 http.request({ url: this.src, method: "GET" }).then(function (r) {
 
-                    let contentLength;
+                    var contentLength;
                     for (var header in r.headers) {
                         if (header === "Content-Length") {
                             contentLength = r.headers[header];
@@ -102,7 +105,7 @@ export class Gif extends Common.Gif {
 
                     console.log('contentLength: ' + contentLength);
 
-                    let buffer = java.nio.ByteBuffer.allocateDirect(contentLength);
+                    var buffer = java.nio.ByteBuffer.allocateDirect(contentLength);
                     console.log('buffer: ' + buffer);
 
                     // var array = buffer.array();
@@ -111,28 +114,13 @@ export class Gif extends Common.Gif {
                     // var inputStream = java.io.InputStream.read(array);
                     // console.log('inputStream: ' + inputStream);
 
-                    let channel = java.nio.channels.Channels.newChannel(r.content.raw);
+                    var channel = java.nio.channels.Channels.newChannel(r.content.raw); // returns OutputStreamChannel
                     console.log('channel: ' + channel);
 
-                    let bytesRead = 0;
-                    console.log('bytesRead: ' + bytesRead);
-
-                    /**** THIS WORKS IN THE NATIVE ANDROID CODE ABOVE but NOT HERE *****/
+                    // NEED INPUT STREAM CHANNEL TO WORKING
                     while (buffer.remaining() > 0) {
                         channel.read(buffer);
                     }
-
-                    // /**  ANOTHER OPTION TO ATTEMPT THE WHILE LOOP IS NOT WORKING :/    **/
-                    // while (bytesRead >= 0) {
-                    //     buffer.rewind();
-                    //     bytesRead = channel.read(buffer);
-                    //     buffer.rewind();
-
-                    //     for (var i = 0; i < bytesRead; i++) {
-                    //         var b = buffer.get();
-                    //         console.log('Byte read: ' + b);
-                    //     }
-                    // }
 
                     channel.close();
 
