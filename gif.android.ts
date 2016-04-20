@@ -74,9 +74,7 @@ export class Gif extends Common.Gif {
                 });
 
             }
-
-
-
+            
         } else {
             console.log("No src property set for the Gif");
         }

@@ -15,7 +15,7 @@
   
     <Label text="Gifs rule the world." class="message" textWrap="true"/>
     
-    <!--<GridLayout rows="140, 140, 140, 140, 140, 140" columns="*, *">
+   <GridLayout rows="140, 140, 140, 140, 140, 140" columns="*, *">
     
       <Gif:Gif src="~/gifs/darthRide.gif" row="0" col="0" />
       <Gif:Gif src="https://media.giphy.com/media/BoPUZQRQEPogo/giphy.gif"  row="0" col="1" />
@@ -33,12 +33,8 @@
       
       <Gif:Gif src="~/gifs/hammer.gif" row="5" colSpan="2" />
 
-    </GridLayout>-->
-     
-     <!--<button text="remote gif" tap="remoteGif" />-->
-  <!--<Placeholder creatingView="remoteGif" />-->
+    </GridLayout>
     
-    <Gif:Gif src="https://media.giphy.com/media/BoPUZQRQEPogo/giphy.gif" height="110" />
     
     <Gif:Gif src="~/gifs/meatwad.gif" id="myGif" loaded="gifLoaded" height="110" />
 

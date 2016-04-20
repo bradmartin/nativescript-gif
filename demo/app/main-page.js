@@ -6,12 +6,6 @@ var color = require("color");
 var http = require("http");
 var data = new observable.Observable({});
 
-var gifList = [
-    { name: 'Office', path: '~/gifs/mikeScott.gif' },
-    { name: 'Bugs', path: '~/gifs/bugs.gif' },
-    { name: 'Silicon Valley', path: '~/gifs/swimming.gif' },
-    { name: 'Steve Harvey', path: '~/gifs/steve.gif' }
-];
 var page;
 
 
@@ -65,52 +59,4 @@ function getDuration(gifView) {
     data.set('duration', x);
 }
 exports.getDuration = getDuration;
-
-
-
-function remoteGif(args) {
-    console.log('REMOTE GIF START');
-    var url = "https://media4.giphy.com/media/3uyIgVxP1qAjS/200.gif";
-    var drawable;
-    
-    http.request({ url: url, method: "GET" }).then(function (r) {
-
-        // for (var header in r.headers) {
-        //     console.log(header + ":" + r.headers[header]);
-        // };
-
-        console.log('Response CONTENT: ' + r.content);
-        var bytes = r.content.raw;
-
-        // var buffer = java.nio.ByteBuffer.allocate(bytes);
-        // // b.copyPixelsToBuffer(buffer);
-
-        // var array = buffer.array();
-        // console.log('array: ' + array);
-
-        drawable = new pl.droidsonroids.gif.GifDrawable(bytes);
-        console.log('DRAWABLE: ' + drawable);
-
-        var gifImageView = new pl.droidsonroids.gif.GifImageView(app.android.currentContext);
-        // gifImageView.setImageURI(android.net.Uri.parse(url));
-        // console.log('GIF IMAGE VIEW mainpage.js: ' + gifImageView);
-
-        gifImageView.setImageDrawable(drawable);
-
-        args.view = gifImageView;
-
-    }, function (err) {
-        console.log(err);
-    });
-
-    // var gifImageView = new pl.droidsonroids.gif.GifImageView(app.android.currentContext);
-    // // gifImageView.setImageURI(android.net.Uri.parse(url));
-    // // console.log('GIF IMAGE VIEW mainpage.js: ' + gifImageView);
-
-    // gifImageView.setImageDrawable(drawable);
-
-    // args.view = gifImageView;
-
-}
-exports.remoteGif = remoteGif;
 //# sourceMappingURL=main-page.js.map
