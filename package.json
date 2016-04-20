@@ -1,6 +1,6 @@
 {
 	"name": "nativescript-gif",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"description": "NativeScript plugin to use .gifs",
 	"main": "gif.js",
 	"nativescript": {
@@ -24,6 +24,7 @@
 		"NativeScript",
 		"JavaScript",
 		"Android",
+		"iOS",
 		"gif",
         "bradmartin"
 	],

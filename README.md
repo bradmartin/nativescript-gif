@@ -1,6 +1,8 @@
 # NativeScript-Gif
 NativeScript plugin to use .gifs
 
+##### *<span style="color: #ff4081">Current limitation, Android only support local .gifs. The Android library should support remote urls, I will gladly accept any PR to implement this feature.</span>*
+
 Android Library | iOS CocoaPod
 --------------- | ------------
 [Koral-- / android-gif-drawable](https://github.com/koral--/android-gif-drawable) | [FLAnimatedImage by Flipboard](https://github.com/Flipboard/FLAnimatedImage)
