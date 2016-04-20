@@ -34,14 +34,17 @@
       <Gif:Gif src="~/gifs/hammer.gif" row="5" colSpan="2" />
 
     </GridLayout>-->
+     
+     <!--<button text="remote gif" tap="remoteGif" />-->
+  <!--<Placeholder creatingView="remoteGif" />-->
     
+    <Gif:Gif src="https://media4.giphy.com/media/BgBf6pW9qOgQU/200.gif" height="110" />
+    
+    <Gif:Gif src="~/gifs/meatwad.gif" id="myGif" loaded="gifLoaded" height="110" />
 
-    
-    <Gif:Gif src="https://media4.giphy.com/media/BgBf6pW9qOgQU/200.gif" id="myGif" loaded="gifLoaded" height="140" />
-    
     <button text="Start" tap="startGif" />
     <button text="Stop" tap="stopGif" />
-    <Label text="{{ frames }}" visibility="{{ frames ? 'visible' : 'collapsed' }}" textWrap="true" />
+    <Label text="{{ frames }}" class="message" visibility="{{ frames ? 'visible' : 'collapsed' }}" textWrap="true" />
     <button text="Frame Count" tap="getFrames" />
     <Label text="{{ duration }}" textWrap="true" />    
   </StackLayout>

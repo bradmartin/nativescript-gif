@@ -1,14 +1,13 @@
 ﻿.message {
   color: #333;
-  font-size: 20;
+  font-size: 16;
   horizontal-align: center;
-  padding:20;
+  padding:8;
 }
 
 button {
     background-color: #FF4081;
     color: #f1f1f1;
-    border-radius: 4;
     margin: 4;
 }
 

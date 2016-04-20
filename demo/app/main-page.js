@@ -3,6 +3,7 @@ var observable = require('data/observable');
 var app = require("application");
 var platform = require("platform");
 var color = require("color");
+var http = require("http");
 var data = new observable.Observable({});
 
 var gifList = [
@@ -30,8 +31,7 @@ exports.pageLoaded = pageLoaded;
 
 function gifLoaded(args) {
     var gif = args.object;
-    console.log('Gif: ' + gif);
-    console.log('gif.ios: ' + gif.ios);
+    // console.log('Gif: ' + gif);
     data.set("gifSrc", gif.src);
 }
 exports.gifLoaded = gifLoaded;
@@ -41,13 +41,12 @@ function stopGif(args) {
     var gifView = page.getViewById('myGif');
     gifView.stop();
 }
-exports.stopGif = stopGif; 
+exports.stopGif = stopGif;
 
 
 function startGif(args) {
     var gifView = page.getViewById('myGif');
-    console.log('gif.ios: ' + gifView.ios);
-    console.log('gifView: ' + gifView);
+    console.log('Gif: ' + gifView);
     gifView.start();
 }
 exports.startGif = startGif;
@@ -66,4 +65,52 @@ function getDuration(gifView) {
     data.set('duration', x);
 }
 exports.getDuration = getDuration;
+
+
+
+function remoteGif(args) {
+    console.log('REMOTE GIF START');
+    var url = "https://media4.giphy.com/media/3uyIgVxP1qAjS/200.gif";
+    var drawable;
+    
+    http.request({ url: url, method: "GET" }).then(function (r) {
+
+        // for (var header in r.headers) {
+        //     console.log(header + ":" + r.headers[header]);
+        // };
+
+        console.log('Response CONTENT: ' + r.content);
+        var bytes = r.content.raw;
+
+        // var buffer = java.nio.ByteBuffer.allocate(bytes);
+        // // b.copyPixelsToBuffer(buffer);
+
+        // var array = buffer.array();
+        // console.log('array: ' + array);
+
+        drawable = new pl.droidsonroids.gif.GifDrawable(bytes);
+        console.log('DRAWABLE: ' + drawable);
+
+        var gifImageView = new pl.droidsonroids.gif.GifImageView(app.android.currentContext);
+        // gifImageView.setImageURI(android.net.Uri.parse(url));
+        // console.log('GIF IMAGE VIEW mainpage.js: ' + gifImageView);
+
+        gifImageView.setImageDrawable(drawable);
+
+        args.view = gifImageView;
+
+    }, function (err) {
+        console.log(err);
+    });
+
+    // var gifImageView = new pl.droidsonroids.gif.GifImageView(app.android.currentContext);
+    // // gifImageView.setImageURI(android.net.Uri.parse(url));
+    // // console.log('GIF IMAGE VIEW mainpage.js: ' + gifImageView);
+
+    // gifImageView.setImageDrawable(drawable);
+
+    // args.view = gifImageView;
+
+}
+exports.remoteGif = remoteGif;
 //# sourceMappingURL=main-page.js.map

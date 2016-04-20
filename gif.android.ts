@@ -37,7 +37,6 @@ export class Gif extends Common.Gif {
         this._android = new pl.droidsonroids.gif.GifImageView(this._context);
 
         if (this.src) {
-
             var isUrl = false;
 
             if (this.src.indexOf("://") !== -1) {
@@ -61,49 +60,40 @@ export class Gif extends Common.Gif {
 
             } else {
 
-
-                try {
-                    http.getImage(this.src).then(function (r) {
-                        console.log('Image response: ' + r.android);
-                        
-                        var b = r.android;
-                        var bytes = b.getByteCount();
-                        console.log('bytes: ' + bytes);
-                        
-                        var buffer = java.nio.ByteBuffer.allocate(bytes);
-                        b.copyPixelsToBuffer(buffer);
-
-                        var array = buffer.array();
-                        console.log('array: ' + array);
-                        
-                        this._drawable = new pl.droidsonroids.gif.GifDrawable(array);
-                        console.log('this._drawable: ' + this._drawable);
-
-                    }, function (err) {
-                        console.log(err);
-                    });
-                } catch (ex) {
-                    console.log(ex);
-                }                
+                console.log('isUrl: ' + isUrl);
                 
+                http.request({ url: this.src, method: "GET" }).then(function (r) {
 
-                // this._drawable = new pl.droidsonroids.gif.GifDrawable(contentResolver, url);
+                    for (var header in r.headers) {
+                        console.log(header + ":" + r.headers[header]);
+                    };
 
-                // this._drawable = new pl.droidsonroids.gif.GifDrawable(bis);
+                    console.log('Response: ' + r);
+                    var bytes = r.content.raw;
+
+                    // var buffer = java.nio.ByteBuffer.allocate(bytes);
+                    // // b.copyPixelsToBuffer(buffer);
+
+                    // var array = buffer.array();
+                    // console.log('array: ' + array);
+
+                    this._drawable = new pl.droidsonroids.gif.GifDrawable(bytes);
+
+                }, function (err) {
+                    console.log(err);
+                });           
 
             }
 
-            // this._drawable = new pl.droidsonroids.gif.GifDrawable(this.src);
+            this._android.setImageDrawable(this._drawable);
 
         } else {
             console.log("No src property set for the Gif");
         }
 
-        this._android.setImageDrawable(this._drawable);
-
     }
 
-    
+
 
     /**
      * Stop playing the .gif
