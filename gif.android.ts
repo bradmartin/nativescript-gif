@@ -36,6 +36,8 @@ export class Gif extends Common.Gif {
     public _createUI() {
         this._android = new pl.droidsonroids.gif.GifImageView(this._context);
 
+        var _this = this;  // TS doesn't always know when to create _this
+
         if (this.src) {
             var isUrl = false;
 
@@ -57,93 +59,23 @@ export class Gif extends Common.Gif {
                 }
 
                 this._drawable = new pl.droidsonroids.gif.GifDrawable(this.src);
+                this._android.setImageDrawable(this._drawable);
 
             } else {
 
-                // if (android.os.Build.VERSION.SDK_INT > 9) {
-                //     var policy = new android.os.StrictMode.ThreadPolicy.Builder().permitAll().build();
-                //     android.os.StrictMode.setThreadPolicy(policy);
-                // }
-
-                // /*** SUGGESTED APPROACH FROM LIBRARY AUTHOR *****/
-
-                // // // // String url = "https://media4.giphy.com/media/BgBf6pW9qOgQU/200.gif";
-                // // // // URLConnection urlConnection = new URL(url).openConnection();
-                // // // // urlConnection.connect();
-                // // // // final int contentLength = urlConnection.getContentLength();
-                // // // // ByteBuffer buffer = ByteBuffer.allocateDirect(contentLength);
-                // // // // ReadableByteChannel channel = Channels.newChannel(urlConnection.getInputStream());
-                // // // // while (buffer.remaining() > 0)
-                // // // //     channel.read(buffer);
-                // // // // channel.close();
-                // // // // GifDrawable drawable = new GifDrawable(buffer);
-
-                // var url = new java.net.URL(this.src);
-                // var urlConnection = url.openConnection();
-                // urlConnection.connect();
-                // var contentLength = urlConnection.getContentLength();
-                // console.log('contentLength: ' + contentLength);
-                // var buffer = java.nio.ByteBuffer.allocateDirect(contentLength);
-                // console.log('buffer: ' + buffer);
-                // var channel = java.nio.channels.Channels.newChannel(urlConnection.getInputStream());
-                // console.log('channel: ' + channel);
-                // while (buffer.remaining() > 0) {
-                //     channel.read(buffer);
-                // }
-                // channel.close();                
-                // console.log('channel close');
-
                 http.request({ url: this.src, method: "GET" }).then(function(r) {
 
-                    /***** Enchev suggestion - didn't work :(     *****/
-                    // var bytes = r.content.raw.toByteArray();
-                    // console.log('bytes: ' + bytes);
-                    // var buffer = java.nio.ByteBuffer.wrap(bytes);
-                    // console.log('buffer: ' + buffer);
-
-
-                    /***** Attempt to use the Content-Length header, this part is okay  *****/                    
-                    var contentLength;
-                    for (var header in r.headers) {
-                        if (header === "Content-Length") {
-                            contentLength = r.headers[header];
-                            break;
-                        }
-                    };
-
-                    console.log('contentLength: ' + contentLength);
-
-                    /***** The buffer is created    ******/                    
-                    var buffer = java.nio.ByteBuffer.allocateDirect(contentLength);
-                    console.log('buffer: ' + buffer);
-
-                
-                    // returns OutputStreamChannel --- PROBLEM HERE IS it returns an OutputStream 
-                    // the Java sample code passed in urlConnection.getInputStream() which returns an Input stream and it works
-                    // Need to get an input stream as the channel and the while loop should work and then the buffer should also work
-                    // when passed to the GifDrawable
-                    var channel = java.nio.channels.Channels.newChannel(r.content.raw); 
-                    console.log('channel: ' + channel);
-
-                    // NEED INPUT STREAM CHANNEL TO WORKING
-                    while (buffer.remaining() > 0) {
-                        channel.read(buffer);
-                    }
-
-                    channel.close();
-
-                    this._drawable = new pl.droidsonroids.gif.GifDrawable(buffer);
+                    _this._drawable = new pl.droidsonroids.gif.GifDrawable(r.content.raw.toByteArray());
+                    _this._android.setImageDrawable(_this._drawable);
                     console.log('this._drawable: ' + this._drawable);
 
                 }, function (err) {
                     console.log(err);
                 });
 
-                // this._drawable = new pl.droidsonroids.gif.GifDrawable(buffer);
-
             }
 
-            this._android.setImageDrawable(this._drawable);
+
 
         } else {
             console.log("No src property set for the Gif");
