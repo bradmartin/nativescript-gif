@@ -1,6 +1,6 @@
 {
 	"name": "nativescript-gif",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "NativeScript plugin to use .gifs",
 	"main": "gif.js",
 	"nativescript": {
@@ -37,6 +37,11 @@
 			"name": "Nathanael Anderson",
 			"email": "nathan@master-technology.com",
 			"url": "https://github.com/NathanaelA"
+		},
+		{
+			"name": "Nathan Walker",
+    		"email": "walkerrunpdx@gmail.com",
+			"url": "https://github.com/NathanWalker"
 		}
 	],
 	"bugs": {

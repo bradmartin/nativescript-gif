@@ -64,9 +64,9 @@ export class Gif extends Common.Gif {
                 
                 http.request({ url: this.src, method: "GET" }).then(function (r) {
 
-                    for (var header in r.headers) {
-                        console.log(header + ":" + r.headers[header]);
-                    };
+                    // for (var header in r.headers) {
+                    //     console.log(header + ":" + r.headers[header]);
+                    // };
 
                     console.log('Response: ' + r);
                     var bytes = r.content.raw;
