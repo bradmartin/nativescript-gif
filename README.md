@@ -12,7 +12,7 @@ Android Library | iOS CocoaPod
 
 Android Screen | iOS Screen
 -------------- | ----------
-![GifExample](screens/sample.gif) | ![iOSSample](screens/ios_sample.gif)
+![GifExample](screens/android_sample.gif) | ![iOSSample](screens/ios_sample.gif)
 
 ## Usage
 
