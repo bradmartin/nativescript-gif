@@ -60,28 +60,90 @@ export class Gif extends Common.Gif {
 
             } else {
 
-                console.log('isUrl: ' + isUrl);
-                
+                // if (android.os.Build.VERSION.SDK_INT > 9) {
+                //     var policy = new android.os.StrictMode.ThreadPolicy.Builder().permitAll().build();
+                //     android.os.StrictMode.setThreadPolicy(policy);
+                // }
+
+                /*** SUGGESTED APPROACH FROM LIBRARY AUTHOR *****/
+
+                // // // String url = "https://media4.giphy.com/media/BgBf6pW9qOgQU/200.gif";
+                // // // URLConnection urlConnection = new URL(url).openConnection();
+                // // // urlConnection.connect();
+                // // // final int contentLength = urlConnection.getContentLength();
+                // // // ByteBuffer buffer = ByteBuffer.allocateDirect(contentLength);
+                // // // ReadableByteChannel channel = Channels.newChannel(urlConnection.getInputStream());
+                // // // while (buffer.remaining() > 0)
+                // // //     channel.read(buffer);
+                // // // channel.close();
+                // // // GifDrawable drawable = new GifDrawable(buffer);
+
+                // var url = new java.net.URL(this.src);
+                // var urlConnection = url.openConnection();
+                // urlConnection.connect();
+                // var contentLength = urlConnection.getContentLength();
+                // var buffer = java.nio.ByteBuffer.allocateDirect(contentLength);
+                // var channel = java.nio.channels.Channels.newChannel(urlConnection.getInputStream());
+                // while (buffer.remaining() > 0) {
+                //     channel.read(buffer);
+                // }
+                // channel.close();                
+
+
                 http.request({ url: this.src, method: "GET" }).then(function (r) {
 
-                    // for (var header in r.headers) {
-                    //     console.log(header + ":" + r.headers[header]);
-                    // };
+                    let contentLength;
+                    for (var header in r.headers) {
+                        if (header === "Content-Length") {
+                            contentLength = r.headers[header];
+                            break;
+                        }
+                    };
 
-                    console.log('Response: ' + r);
-                    var bytes = r.content.raw;
+                    console.log('contentLength: ' + contentLength);
 
-                    // var buffer = java.nio.ByteBuffer.allocate(bytes);
-                    // // b.copyPixelsToBuffer(buffer);
+                    let buffer = java.nio.ByteBuffer.allocateDirect(contentLength);
+                    console.log('buffer: ' + buffer);
 
                     // var array = buffer.array();
                     // console.log('array: ' + array);
 
-                    this._drawable = new pl.droidsonroids.gif.GifDrawable(bytes);
+                    // var inputStream = java.io.InputStream.read(array);
+                    // console.log('inputStream: ' + inputStream);
+
+                    let channel = java.nio.channels.Channels.newChannel(r.content.raw);
+                    console.log('channel: ' + channel);
+
+                    let bytesRead = 0;
+                    console.log('bytesRead: ' + bytesRead);
+
+                    /**** THIS WORKS IN THE NATIVE ANDROID CODE ABOVE but NOT HERE *****/
+                    while (buffer.remaining() > 0) {
+                        channel.read(buffer);
+                    }
+
+                    // /**  ANOTHER OPTION TO ATTEMPT THE WHILE LOOP IS NOT WORKING :/    **/
+                    // while (bytesRead >= 0) {
+                    //     buffer.rewind();
+                    //     bytesRead = channel.read(buffer);
+                    //     buffer.rewind();
+
+                    //     for (var i = 0; i < bytesRead; i++) {
+                    //         var b = buffer.get();
+                    //         console.log('Byte read: ' + b);
+                    //     }
+                    // }
+
+                    channel.close();
+
+                    this._drawable = new pl.droidsonroids.gif.GifDrawable(buffer);
+                    console.log('this._drawable: ' + this._drawable);
 
                 }, function (err) {
                     console.log(err);
-                });           
+                });
+
+                // this._drawable = new pl.droidsonroids.gif.GifDrawable(buffer);
 
             }
 
