@@ -9,8 +9,9 @@
     }
   },
   "dependencies": {
-    "tns-core-modules": "^1.7.1",
-    		"nativescript-gif": "file:.."
+    "nativescript-gif": "file:..",
+    "nativescript-statusbar": "^1.0.0",
+    "tns-core-modules": "^1.7.1"
   },
   "devDependencies": {
     "nativescript-dev-typescript": "^0.3.1",

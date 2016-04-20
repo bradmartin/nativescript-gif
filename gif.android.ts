@@ -93,8 +93,16 @@ export class Gif extends Common.Gif {
                 // channel.close();                
                 // console.log('channel close');
 
-                http.request({ url: this.src, method: "GET" }).then(function (r) {
+                http.request({ url: this.src, method: "GET" }).then(function(r) {
 
+                    /***** Enchev suggestion - didn't work :(     *****/
+                    // var bytes = r.content.raw.toByteArray();
+                    // console.log('bytes: ' + bytes);
+                    // var buffer = java.nio.ByteBuffer.wrap(bytes);
+                    // console.log('buffer: ' + buffer);
+
+
+                    /***** Attempt to use the Content-Length header, this part is okay  *****/                    
                     var contentLength;
                     for (var header in r.headers) {
                         if (header === "Content-Length") {
@@ -105,16 +113,16 @@ export class Gif extends Common.Gif {
 
                     console.log('contentLength: ' + contentLength);
 
+                    /***** The buffer is created    ******/                    
                     var buffer = java.nio.ByteBuffer.allocateDirect(contentLength);
                     console.log('buffer: ' + buffer);
 
-                    // var array = buffer.array();
-                    // console.log('array: ' + array);
-
-                    // var inputStream = java.io.InputStream.read(array);
-                    // console.log('inputStream: ' + inputStream);
-
-                    var channel = java.nio.channels.Channels.newChannel(r.content.raw); // returns OutputStreamChannel
+                
+                    // returns OutputStreamChannel --- PROBLEM HERE IS it returns an OutputStream 
+                    // the Java sample code passed in urlConnection.getInputStream() which returns an Input stream and it works
+                    // Need to get an input stream as the channel and the while loop should work and then the buffer should also work
+                    // when passed to the GifDrawable
+                    var channel = java.nio.channels.Channels.newChannel(r.content.raw); 
                     console.log('channel: ' + channel);
 
                     // NEED INPUT STREAM CHANNEL TO WORKING
@@ -195,3 +203,10 @@ export class Gif extends Common.Gif {
     }
 
 }
+
+
+    // var array = buffer.array();
+                    // console.log('array: ' + array);
+
+                    // var inputStream = java.io.InputStream.read(array);
+                    // console.log('inputStream: ' + inputStream);
