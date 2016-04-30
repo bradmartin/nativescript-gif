@@ -1,3 +1,6 @@
+[![npm](https://img.shields.io/npm/v/nativescript-gif.svg)](https://www.npmjs.com/package/nativescript-gif)
+[![npm](https://img.shields.io/npm/dt/nativescript-gif.svg?label=npm%20downloads)](https://www.npmjs.com/package/nativescript-gif)
+
 # NativeScript-Gif
 NativeScript plugin to use .gifs
 
