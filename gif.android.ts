@@ -87,6 +87,7 @@ export class Gif extends Common.Gif {
      * Stop playing the .gif
      */
     public stop(): void {
+      if (this._drawable)
         this._drawable.stop();
     }
 
@@ -94,6 +95,7 @@ export class Gif extends Common.Gif {
      * Start playing the .gif
      */
     public start(): void {
+      if (this._drawable)
         this._drawable.start();
     }
 
@@ -102,8 +104,12 @@ export class Gif extends Common.Gif {
      * @returns  Boolean
      */
     public isPlaying(): boolean {
+      if (this._drawable) {
         var isPlaying = this._drawable.isRunning();
         return isPlaying;
+      } else {
+        return false;
+      }
     }
 
     /**
@@ -111,6 +117,7 @@ export class Gif extends Common.Gif {
      * @returns  Number of frames.
      */
     public getFrameCount(): number {
+      if (this._drawable)
         var frames = this._drawable.getNumberOfFrames();
         return frames;
     }
@@ -120,15 +127,21 @@ export class Gif extends Common.Gif {
     }
 
     public getDuration(): number {
+      if (this._drawable) {
         var duration = this._drawable.getDuration();
         return duration;
+      } else {
+        return 0;
+      }
     }
 
     public setSpeed(factor: number): void {
+      if (this._drawable)
         this._drawable.setSpeed(factor);
     }
 
     public recycle(): void {
+      if (this._drawable)
         this._drawable.recycle();
     }
 

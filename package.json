@@ -3,6 +3,7 @@
 	"version": "1.0.61",
 	"description": "NativeScript plugin to use .gifs",
 	"main": "gif.js",
+  "typings": "gif.d.ts",
 	"nativescript": {
 		"platforms": {
 			"android": "1.7.0",
