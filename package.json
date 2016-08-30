@@ -1,18 +1,18 @@
 {
 	"name": "nativescript-gif",
-	"version": "1.0.61",
+	"version": "1.0.7",
 	"description": "NativeScript plugin to use .gifs",
 	"main": "gif.js",
-  "typings": "gif.d.ts",
+	"typings": "gif.d.ts",
 	"nativescript": {
 		"platforms": {
 			"android": "1.7.0",
-      "ios": "1.7.0"
+			"ios": "1.7.0"
 		}
 	},
 	"scripts": {
 		"build": "tsc",
-    "demo.ios": "npm run preparedemo; cd demo; tns emulate ios",
+		"demo.ios": "npm run preparedemo; cd demo; tns emulate ios",
 		"demo.android": "npm run preparedemo; cd demo; tns run android",
 		"preparedemo": "npm run build; cd demo; tns plugin remove nativescript-gif; tns plugin add ..; tns install",
 		"setup": "cd demo; npm install; cd ..; npm run build; cd demo; tns plugin add ..; cd .."
@@ -27,12 +27,12 @@
 		"Android",
 		"iOS",
 		"gif",
-        "bradmartin"
+		"bradmartin"
 	],
 	"author": {
 		"name": "Brad Martin",
 		"email": "bradwaynemartin@gmail.com",
-        "url": "https://github.com/bradmartin"
+		"url": "https://github.com/bradmartin"
 	},
 	"contributors": [
 		{
@@ -42,7 +42,7 @@
 		},
 		{
 			"name": "Nathan Walker",
-    		"email": "walkerrunpdx@gmail.com",
+			"email": "walkerrunpdx@gmail.com",
 			"url": "https://github.com/NathanWalker"
 		}
 	],
