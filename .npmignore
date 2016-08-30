@@ -1,5 +1,7 @@
 demo/
 node_modules/
 screens/
+*.ts
+!*.d.ts
 *.png
 *.log
