@@ -1,7 +1,9 @@
 demo/
 node_modules/
 screens/
+lib/
 *.ts
 !*.d.ts
 *.png
 *.log
+tsconfig.json
