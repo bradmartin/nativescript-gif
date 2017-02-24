@@ -1,15 +1,14 @@
 /**
  * Contains the Gif class, which represents a gif widget.
  */
-declare module "nativescript-gif" {
     import dependencyObservable = require("ui/core/dependency-observable");
-    import * as view from "ui/core/view";
+    import { View } from "ui/core/view";
 
 
     /**
      * Represents a class that provides functionality for loading gif(s).
      */
-    export class Gif extends view.View {
+    export class Gif extends View {
         public static srcProperty: dependencyObservable.Property;
         public static isLoadingProperty: dependencyObservable.Property;
 
@@ -33,17 +32,3 @@ declare module "nativescript-gif" {
          */
         isLoading: boolean;       
     }
-
-   /**
-   * Provides common options for creating a video
-   */
-    export interface Options extends view.Options {
-
-        /**
-         * Gets or sets the URL of the gif
-         */
-        src: string;
-    }
-
-
-}
