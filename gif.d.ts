@@ -1,34 +1,34 @@
 /**
  * Contains the Gif class, which represents a gif widget.
  */
-    import dependencyObservable = require("ui/core/dependency-observable");
-    import { View } from "ui/core/view";
+import dependencyObservable = require("ui/core/dependency-observable");
+import { View } from "ui/core/view";
 
+
+/**
+ * Represents a class that provides functionality for loading gif(s).
+ */
+export class Gif extends View {
+    public static srcProperty: dependencyObservable.Property;
+    public static isLoadingProperty: dependencyObservable.Property;
 
     /**
-     * Represents a class that provides functionality for loading gif(s).
+    * Gets the native [android widget](https://github.com/koral--/android-gif-drawable) that represents the user interface for this component. Valid only when running on Android OS.
+    */
+    android: any /* pl.droidsonroids.gif.GifImageView */;
+
+    /**
+     * Gets the native iOS [FLAnimatedImageView](https://github.com/Flipboard/FLAnimatedImage) that represents the user interface for this component. Valid only when running on iOS.
      */
-    export class Gif extends View {
-        public static srcProperty: dependencyObservable.Property;
-        public static isLoadingProperty: dependencyObservable.Property;
+    ios: any /* FLAnimatedImageView */;
 
-         /**
-         * Gets the native [android widget](https://github.com/koral--/android-gif-drawable) that represents the user interface for this component. Valid only when running on Android OS.
-         */
-        android: any /* pl.droidsonroids.gif.GifImageView */;
+    /**
+     * Gets or sets the source of the Gif. This can be either an URL string or a native gif instance.
+     */
+    src: any;
 
-        /**
-         * Gets the native iOS [FLAnimatedImageView](https://github.com/Flipboard/FLAnimatedImage) that represents the user interface for this component. Valid only when running on iOS.
-         */
-        ios: any /* FLAnimatedImageView */;
-
-        /**
-         * Gets or sets the source of the Gif. This can be either an URL string or a native gif instance.
-         */
-        src: any;
-
-        /**
-         * Gets a value indicating if the gif is currently loading
-         */
-        isLoading: boolean;       
-    }
+    /**
+     * Gets a value indicating if the gif is currently loading
+     */
+    isLoading: boolean;
+}
