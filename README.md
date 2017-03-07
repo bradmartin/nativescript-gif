@@ -9,18 +9,18 @@ Android Library | iOS CocoaPod
 [Koral-- / android-gif-drawable](https://github.com/koral--/android-gif-drawable) | [FLAnimatedImage by Flipboard](https://github.com/Flipboard/FLAnimatedImage)
 
 ## Installation 
-`npm install nativescript-gif`
+`npm install nativescript-gif` or `tns plugin add nativescript-gif`
 
 Android Screen | iOS Screen
 -------------- | ----------
 ![GifExample](screens/android_sample.gif) | ![iOSSample](screens/ios_sample.gif)
 
 ## Usage
+#### XML
 
 <span style="color:red">IMPORTANT: </span>*Make sure you include
 `xmlns:Gif="nativescript-gif"` on the Page element.*
 
-###
 ```XML
 <Page xmlns="http://schemas.nativescript.org/tns.xsd"
       xmlns:Gif="nativescript-gif" loaded="pageLoaded">
@@ -29,6 +29,20 @@ Android Screen | iOS Screen
     <Gif:Gif src="https://media4.giphy.com/media/3uyIgVxP1qAjS/200.gif" height="200" />
   </StackLayout> 
 </Page>  
+```
+#### Angular 2
+##### TypeScript
+
+`import { registerElement } from "nativescript-angular/element-registry";`
+
+`registerElement("Gif", () => require("nativescript-gif").Gif);`
+
+##### HTML 
+```HTML
+<StackLayout>
+    <Gif src="~/gifs/bill.gif" height="100" ></Gif>
+    <Gif src="https://media4.giphy.com/media/3uyIgVxP1qAjS/200.gif" height="200" ></Gif>
+</StackLayout>
 ```
 
 ## API
