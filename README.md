@@ -8,8 +8,12 @@ Android Library | iOS CocoaPod
 --------------- | ------------
 [Koral-- / android-gif-drawable](https://github.com/koral--/android-gif-drawable) | [FLAnimatedImage by Flipboard](https://github.com/Flipboard/FLAnimatedImage)
 
-## Installation 
+## Installation
+#### NS 3.0 +
 `tns plugin add nativescript-gif`
+
+#### NS < 3.0
+`tns plugin add nativescript-gif@1.0.9`
 
 Android Screen | iOS Screen
 -------------- | ----------
