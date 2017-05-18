@@ -1,9 +1,6 @@
 <Page xmlns="http://schemas.nativescript.org/tns.xsd"
       xmlns:Gif="nativescript-gif" 
-      xmlns:x="nativescript-statusbar" 
       loaded="pageLoaded">
-      
-      <x:StatusBar ios:barStyle="light" android:barStyle="#00695C" />
       
   <Page.actionBar>
     <ActionBar title="Gifs" backgroundColor="#009688" color="#fff" />
@@ -17,19 +14,19 @@
     
    <GridLayout rows="140, 140, 140, 140, 140, 140" columns="*, *">
     
-      <Gif:Gif src="~/gifs/darthRide.gif" row="0" col="0" />
-      <Gif:Gif src="https://media.giphy.com/media/BoPUZQRQEPogo/giphy.gif"  row="0" col="1" />
+      <Gif:Gif src="{{src}}" row="0" col="0" />
+      <Gif:Gif src="http://media.giphy.com/media/BoPUZQRQEPogo/giphy.gif"  row="0" col="1" />
       
-      <Gif:Gif src="https://media1.giphy.com/media/3oGRFeGtgYZh6M32RW/200.gif" row="1" col="0" />
-      <Gif:Gif src="https://media3.giphy.com/media/12bVDtXPOzYwda/200.gif" row="1" col="1" />
+      <Gif:Gif src="http://media1.giphy.com/media/3oGRFeGtgYZh6M32RW/200.gif" row="1" col="0" />
+      <Gif:Gif src="http://media3.giphy.com/media/12bVDtXPOzYwda/200.gif" row="1" col="1" />
       
-      <Gif:Gif src="https://media4.giphy.com/media/RD1q3yvGhMMKc/200.gif" row="2" col="0" />
+      <Gif:Gif src="http://media4.giphy.com/media/RD1q3yvGhMMKc/200.gif" row="2" col="0" />
       <Gif:Gif src="~/gifs/bill.gif" row="2" col="1" />
       
       <Gif:Gif src="~/gifs/meatwad.gif" row="3" colSpan="2" />
 
-      <Gif:Gif src="https://media4.giphy.com/media/3uyIgVxP1qAjS/200.gif" row="4" col="0" />
-      <Gif:Gif src="https://media4.giphy.com/media/BgBf6pW9qOgQU/200.gif" row="4" col="1" />
+      <Gif:Gif src="http://media4.giphy.com/media/3uyIgVxP1qAjS/200.gif" row="4" col="0" />
+      <Gif:Gif src="http://media4.giphy.com/media/BgBf6pW9qOgQU/200.gif" row="4" col="1" />
       
       <Gif:Gif src="~/gifs/hammer.gif" row="5" colSpan="2" />
 
