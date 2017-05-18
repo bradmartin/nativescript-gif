@@ -14,6 +14,8 @@ function pageLoaded(args) {
     // Get the event sender  
     page = args.object;
     page.bindingContext = data;
+    data.set("src", "~/gifs/hammer.gif");
+    setTimeout(function () { return data.set("src", "~/gifs/darthRide.gif"); }, 3000);
     if (app.android && platform.device.sdkVersion >= "21") {
         var window = app.android.startActivity.getWindow();
         window.setStatusBarColor(new color.Color("#00695C").android);
