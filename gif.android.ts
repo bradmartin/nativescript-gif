@@ -1,102 +1,41 @@
 import Common = require('./gif.common');
-import dependencyObservable = require("ui/core/dependency-observable");
-import proxy = require("ui/core/proxy");
 import utils = require("utils/utils")
 import view = require("ui/core/view");
 import fs = require("file-system");
 import application = require("application");
 import * as http from "http";
+import { srcProperty } from "./gif.common";
+
+declare var pl: any;
 
 global.moduleMerge(Common, exports);
 
-function onSrcPropertyChanged(data: dependencyObservable.PropertyChangeData) {
-    var gif = <Gif>data.object;
-    if (!gif.android) {
-        return;
-    }
-
-    gif.src = data.newValue;
-}
-
-// register the setNativeValue callback
-(<proxy.PropertyMetadata>Common.Gif.srcProperty.metadata).onSetNativeValue = onSrcPropertyChanged;
-
 export class Gif extends Common.Gif {
-    private _android: pl.droidsonroids.gif.GifImageView;
-    private _drawable: pl.droidsonroids.gif.GifDrawable;
+    private _drawable: any;
 
     constructor() {
         super();
     }
 
-    get android(): pl.droidsonroids.gif.GifDrawable {
-        return this._android;
+    public createNativeView() {
+        this.nativeView = new pl.droidsonroids.gif.GifImageView(this._context);
+        return this.nativeView;
     }
-
-    public _createUI() {
-        this._android = new pl.droidsonroids.gif.GifImageView(this._context);
-
-        var _this = this;  // TS doesn't always know when to create _this
-
-        if (this.src) {
-            var isUrl = false;
-
-            if (this.src.indexOf("://") !== -1) {
-                if (this.src.indexOf('res://') === -1) {
-                    isUrl = true;
-                }
-            }
-
-            if (!isUrl) {
-                var currentPath = fs.knownFolders.currentApp().path;
-
-                if (this.src[1] === '/' && (this.src[0] === '.' || this.src[0] === '~')) {
-                    this.src = this.src.substr(2);
-                }
-
-                if (this.src[0] !== '/') {
-                    this.src = currentPath + '/' + this.src;
-                }
-
-                this._drawable = new pl.droidsonroids.gif.GifDrawable(this.src);
-                this._android.setImageDrawable(this._drawable);
-
-            } else {
-
-                http.request({ url: this.src, method: "GET" }).then(function(r) {
-
-                    _this._drawable = new pl.droidsonroids.gif.GifDrawable(r.content.raw.toByteArray());
-                    _this._android.setImageDrawable(_this._drawable);
-                    console.log('this._drawable: ' + this._drawable);
-
-                }, function (err) {
-                    console.log(err);
-                });
-
-            }
-            
-        } else {
-            console.log("No src property set for the Gif");
-        }
-
-    }
-
-
 
     /**
      * Stop playing the .gif
      */
     public stop(): void {
-      if (this._drawable)
-        this._drawable.stop();
+        if (this._drawable)
+            this._drawable.stop();
     }
 
     /**
      * Start playing the .gif
      */
     public start(): void {
-      if (this._drawable)
-        this._drawable.start();
+        if (this._drawable)
+            this._drawable.start();
     }
 
     /**
@@ -104,12 +43,12 @@ export class Gif extends Common.Gif {
      * @returns  Boolean
      */
     public isPlaying(): boolean {
-      if (this._drawable) {
-        var isPlaying = this._drawable.isRunning();
-        return isPlaying;
-      } else {
-        return false;
-      }
+        if (this._drawable) {
+            var isPlaying = this._drawable.isRunning();
+            return isPlaying;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -117,8 +56,8 @@ export class Gif extends Common.Gif {
      * @returns  Number of frames.
      */
     public getFrameCount(): number {
-      if (this._drawable)
-        var frames = this._drawable.getNumberOfFrames();
+        if (this._drawable)
+            var frames = this._drawable.getNumberOfFrames();
         return frames;
     }
 
@@ -127,22 +66,67 @@ export class Gif extends Common.Gif {
     }
 
     public getDuration(): number {
-      if (this._drawable) {
-        var duration = this._drawable.getDuration();
-        return duration;
-      } else {
-        return 0;
-      }
+        if (this._drawable) {
+            var duration = this._drawable.getDuration();
+            return duration;
+        } else {
+            return 0;
+        }
     }
 
     public setSpeed(factor: number): void {
-      if (this._drawable)
-        this._drawable.setSpeed(factor);
+        if (this._drawable)
+            this._drawable.setSpeed(factor);
     }
 
     public recycle(): void {
-      if (this._drawable)
-        this._drawable.recycle();
+        if (this._drawable)
+            this._drawable.recycle();
+    }
+
+    [srcProperty.setNative](value: string) {
+        var that = this;  // TS doesn't always know when to create that
+        if (value) {
+            value = value.trim();
+            var isUrl = false;
+
+            if (value.indexOf("://") !== -1) {
+                if (value.indexOf('res://') === -1) {
+                    isUrl = true;
+                }
+            }
+
+            if (!isUrl) {
+                var currentPath = fs.knownFolders.currentApp().path;
+
+                if (value[1] === '/' && (value[0] === '.' || value[0] === '~')) {
+                    value = value.substr(2);
+                }
+
+                if (value[0] !== '/') {
+                    value = currentPath + '/' + value;
+                }
+
+                this._drawable = new pl.droidsonroids.gif.GifDrawable(value);
+                this.nativeView.setImageDrawable(this._drawable);
+
+            } else {
+
+                http.request({ url: value, method: "GET" }).then(function (r) {
+
+                    that._drawable = new pl.droidsonroids.gif.GifDrawable(r.content.raw.toByteArray());
+                    that.nativeView.setImageDrawable(that._drawable);
+
+
+                }, function (err) {
+                    console.log(err);
+                });
+
+            }
+
+        } else {
+            console.log("No src property set for the Gif");
+        }
     }
 
 }
