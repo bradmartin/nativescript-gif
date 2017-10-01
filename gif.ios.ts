@@ -5,23 +5,35 @@ import utils = require("utils/utils")
 import enums = require("ui/enums");
 import fs = require("file-system");
 import * as typesModule from "utils/types";
-import { srcProperty } from "./gif.common";
+import {headersProperty, srcProperty} from "./gif.common";
 import {PercentLength} from "ui/styling/style-properties";
 
 global.moduleMerge(Common, exports);
 
-declare const FLAnimatedImage, NSData, NSString, NSURL, CGRectMake, FLAnimatedImageView;
+declare const FLAnimatedImage, NSData, NSString, NSURLSession, NSMutableURLRequest, NSURL, CGRectMake, FLAnimatedImageView;
 
 export class Gif extends Common.Gif {
     private _animatedImage: any;
+    private _headers: any;
+    private _src: string;
 
     constructor() {
         super();
         this.nativeView = FLAnimatedImageView.alloc().initWithFrame(CGRectMake(0, 0, 100, 100));
         this.nativeView.clipsToBounds = true;
+        this._headers = null;
+        this._src = null;
+    }
+
+    [headersProperty.setNative](value) {
+        this._setHeader(value ? value : null);
     }
 
     [srcProperty.setNative](value: string) {
+        this._setSrcProperty(value);
+    }
+
+    private _setSrcProperty(value: string){
          if (value) {
             var isUrl = false;
 
@@ -30,6 +42,7 @@ export class Gif extends Common.Gif {
                     isUrl = true;
                 }
             }
+             this._src = value;
 
             if (!isUrl) {
                 var currentPath = fs.knownFolders.currentApp().path;
@@ -50,26 +63,12 @@ export class Gif extends Common.Gif {
                 
             } else {
                 // Using a URL
-                this._animatedImage = FLAnimatedImage.animatedImageWithGIFData(
-                    NSData.dataWithContentsOfURL(
-                        NSURL.URLWithString(value)
-                    )
-                );   
-                
+                if (this._headers) {
+                    this._useAnimatedImageFromUrl(value, this._headers);
+                } else {
+                    this._useAnimatedImageFromUrl(value);
+                }
             }
-
-            try {
-                this.nativeView.animatedImage = this._animatedImage;
-                this.nativeView.frame = CGRectMake(0, 0, 100, 100);
-            } catch (ex) {
-                console.log(ex);
-            }
-
-
-            if (isNaN(PercentLength.toDevicePixels(this.width)) || isNaN(PercentLength.toDevicePixels(this.height))) {
-                this.requestLayout();
-            }
-
         } else {
             console.log("No src value detected.");
         }
@@ -103,8 +102,62 @@ export class Gif extends Common.Gif {
      * @returns  Number of frames.
      */
     public getFrameCount(): number {
-        var frames = this.nativeView.animatedImage.frameCount
+        var frames = this.nativeView.animatedImage.frameCount;
         return frames;
     }
 
+    private _useAnimatedImageFromUrl(url: String, headers?: any): void {
+        if (headers){
+            let nsUrl = NSURL.URLWithString(url);
+            let request = NSMutableURLRequest.requestWithURL(nsUrl);
+            for (var property in headers) {
+                if (headers.hasOwnProperty(property)) {
+                        console.log('headers: ' + property + ', value: ' + headers[property]);
+                        request.addValueForHTTPHeaderField(headers[property], property);
+                }
+            }
+            request.HTTPMethod = "GET";
+            let session = NSURLSession.sharedSession;
+            let task = session.dataTaskWithRequestCompletionHandler(request, (data, response, err)=>{
+                if (err){
+                    console.log('Error loading Gif: ' + err.localizedDescription);
+                } else {
+                    this._animatedImage = FLAnimatedImage.animatedImageWithGIFData(data);
+                    this._setImage();
+                }
+            });
+            task.resume();
+``        } else {
+            this._animatedImage = FLAnimatedImage.animatedImageWithGIFData(
+                NSData.dataWithContentsOfURL(
+                    NSURL.URLWithString(url)
+                )
+            );
+            this._setImage();
+        }
+    }
+
+    private _setImage(): void{
+        try {
+            this.nativeView.animatedImage = this._animatedImage;
+            this.nativeView.frame = CGRectMake(0, 0, 100, 100);
+        } catch (ex) {
+            console.log(ex);
+        }
+
+        if (isNaN(PercentLength.toDevicePixels(this.width)) || isNaN(PercentLength.toDevicePixels(this.height))) {
+            this.requestLayout();
+        }
+    }
+
+    private _setHeader(headers: any): void {
+        if (headers) {
+            this._headers = headers;
+            if (this._src && this._src.length > 0) {
+                this._setSrcProperty(this._src);
+            }
+        } else {
+            this._headers = null;
+        }
+    }
 }

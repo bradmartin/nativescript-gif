@@ -16,6 +16,11 @@ export const srcProperty = new Property<Gif, string>({
 });
 srcProperty.register(Gif);
 
+export const headersProperty = new Property<Gif, any>({
+    name: "headers",
+});
+headersProperty.register(Gif);
+
 export const isLoadingProperty = new Property<Gif, boolean>({
     name: "isLoading", defaultValue: false
 });

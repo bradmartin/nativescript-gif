@@ -4,17 +4,21 @@ import view = require("ui/core/view");
 import fs = require("file-system");
 import application = require("application");
 import * as http from "http";
-import { srcProperty } from "./gif.common";
+import { srcProperty, headersProperty } from "./gif.common";
 
-declare var pl: any;
+declare var pl: any, java: any;
 
 global.moduleMerge(Common, exports);
 
 export class Gif extends Common.Gif {
     private _drawable: any;
+    private _headers: any;
+    private _src: string;
 
     constructor() {
         super();
+        this._headers = null;
+        this._src = null;
     }
 
     public createNativeView() {
@@ -84,7 +88,15 @@ export class Gif extends Common.Gif {
             this._drawable.recycle();
     }
 
+    [headersProperty.setNative](value) {
+        this._setHeader(value ? value : null);
+    }
+
     [srcProperty.setNative](value: string) {
+        this._setSrcProperty(value);
+    }
+
+    private _setSrcProperty(value: string){
         var that = this;  // TS doesn't always know when to create that
         if (value) {
             value = value.trim();
@@ -95,7 +107,7 @@ export class Gif extends Common.Gif {
                     isUrl = true;
                 }
             }
-
+            that._src = value;
             if (!isUrl) {
                 var currentPath = fs.knownFolders.currentApp().path;
 
@@ -111,13 +123,17 @@ export class Gif extends Common.Gif {
                 this.nativeView.setImageDrawable(this._drawable);
 
             } else {
-
-                http.request({ url: value, method: "GET" }).then(function (r) {
-
-                    that._drawable = new pl.droidsonroids.gif.GifDrawable(r.content.raw.toByteArray());
-                    that.nativeView.setImageDrawable(that._drawable);
-
-
+                let requestOptions: any = { url: value, method: "GET" };
+                if (this._headers !== null){
+                    requestOptions.headers = this._headers;
+                }
+                http.request(requestOptions).then(function (r) {
+                    if (r.statusCode === 200) {
+                        that._drawable = new pl.droidsonroids.gif.GifDrawable(r.content.raw.toByteArray());
+                        that.nativeView.setImageDrawable(that._drawable);
+                    } else {
+                        console.log('error getting image: ' + r.statusCode);
+                    }
                 }, function (err) {
                     console.log(err);
                 });
@@ -129,6 +145,16 @@ export class Gif extends Common.Gif {
         }
     }
 
+    private _setHeader(headers: any): void {
+        if (headers) {
+            this._headers = headers;
+            if (this._src && this._src.length > 0) {
+                this._setSrcProperty(this._src);
+            }
+        } else {
+            this._headers = null;
+        }
+    }
 }
 
 
