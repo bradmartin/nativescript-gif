@@ -29,7 +29,7 @@ Android Screen | iOS Screen
 <Page xmlns="http://schemas.nativescript.org/tns.xsd"
       xmlns:Gif="nativescript-gif" loaded="pageLoaded">
   <StackLayout>
-    <Gif:Gif src="~/gifs/bill.gif" height="100" />
+    <Gif:Gif headers="{{headersJSON}}" src="~/gifs/bill.gif" height="100" />
     <Gif:Gif src="https://media4.giphy.com/media/3uyIgVxP1qAjS/200.gif" height="200" />
   </StackLayout> 
 </Page>  
@@ -44,10 +44,17 @@ Android Screen | iOS Screen
 ##### HTML 
 ```HTML
 <StackLayout>
-    <Gif src="~/gifs/bill.gif" height="100" ></Gif>
+    <Gif [headers]="headersJSON" src="~/gifs/bill.gif" height="100" ></Gif>
     <Gif src="https://media4.giphy.com/media/3uyIgVxP1qAjS/200.gif" height="200" ></Gif>
 </StackLayout>
 ```
+
+## Properties
+- **src** - *required*
+Set the gif file to play.
+
+- **headers - (JSON Object)** - *optional*
+Set headers to add when loading a gif from URL
 
 ## API
 
