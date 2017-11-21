@@ -60,7 +60,9 @@ export class Gif extends Common.Gif {
                         NSString.stringWithString(value)
                     )
                 );
-                
+                // We need to set the image in case the GIF is not from an URL
+                this._setImage();
+
             } else {
                 // Using a URL
                 if (this._headers) {
