@@ -1,5 +1,9 @@
 [![npm](https://img.shields.io/npm/v/nativescript-gif.svg)](https://www.npmjs.com/package/nativescript-gif)
 [![npm](https://img.shields.io/npm/dt/nativescript-gif.svg?label=npm%20downloads)](https://www.npmjs.com/package/nativescript-gif)
+[![GitHub stars](https://img.shields.io/github/stars/bradmartin/nativescript-gif.svg)](https://github.com/bradmartin/nativescript-gif/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/bradmartin/nativescript-gif.svg)](https://github.com/bradmartin/nativescript-gif/network)
+[![GitHub license](https://img.shields.io/github/license/bradmartin/nativescript-gif.svg)](https://github.com/bradmartin/nativescript-gif/blob/master/LICENSE)
+[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://paypal.me/bradwayne88)
 
 # NativeScript-Gif
 NativeScript plugin to use .gifs
