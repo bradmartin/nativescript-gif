@@ -1,16 +1,20 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
     "target": "es5",
-    "noImplicitAny": false,
+    "module": "commonjs",
+    "moduleResolution": "node",
     "removeComments": true,
-    "preserveConstEnums": true,
-    "sourceMap": false,
-    "declaration": false,
+    "experimentalDecorators": true,
+    "sourceMap": true,
     "noLib": false,
     "noEmitHelpers": true,
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
     "noEmitOnError": false,
-    "experimentalDecorators": true,
+    "noImplicitAny": false,
+    "noImplicitReturns": true,
+    "noImplicitUseStrict": false,
+    "noFallthroughCasesInSwitch": true,
     "lib": ["es6", "dom"],
     "baseUrl": ".",
     "paths": {
@@ -18,5 +22,7 @@
     }
   },
   "compileOnSave": false,
+  "files": ["gif.common.ts", "gif.android.ts", "gif.ios.ts"],
+
   "exclude": ["node_modules", "demo/node_modules", "platforms"]
 }

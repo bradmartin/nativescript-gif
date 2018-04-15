@@ -14,7 +14,7 @@
     
    <GridLayout rows="140, 140, 140, 140, 140, 140" columns="*, *">
     
-      <Gif:Gif src="{{src}}" row="0" col="0" />
+      <Gif:Gif src="{{ src }}" row="0" col="0" />
       <Gif:Gif src="http://media.giphy.com/media/BoPUZQRQEPogo/giphy.gif"  row="0" col="1" />
       
       <Gif:Gif src="http://media1.giphy.com/media/3oGRFeGtgYZh6M32RW/200.gif" row="1" col="0" />
