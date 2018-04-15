@@ -99,8 +99,8 @@ export class Gif extends GifCommon {
   }
 
   private _useAnimatedImageFromUrl(url: string, headers?: any): void {
+    const nsUrl = NSURL.URLWithString(url);
     if (headers) {
-      const nsUrl = NSURL.URLWithString(url);
       const request = NSMutableURLRequest.requestWithURL(nsUrl);
       for (let property in headers) {
         if (headers.hasOwnProperty(property)) {
@@ -120,9 +120,8 @@ export class Gif extends GifCommon {
       });
       task.resume();
     } else {
-      const u = NSURL.URLWithString(url);
-      const data = NSData.dataWithContentsOfURL(u);
-      // TODO: why is this not working here for giphy, maybe header related?
+      const data = NSData.dataWithContentsOfURL(nsUrl);
+      // TODO: why is this not working here for giphy urls haven't tried others, maybe header related?
       console.log('data', data);
       this._animatedImage = FLAnimatedImage.animatedImageWithGIFData(data);
       console.log('animatedImage', this._animatedImage);
