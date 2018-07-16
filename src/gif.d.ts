@@ -29,4 +29,19 @@ export class Gif extends View {
    * Gets a value indicating if the gif is currently loading
    */
   isLoading: boolean;
+
+  /**
+   * Stop playing the .gif
+   */
+  stop: () => void;
+  /**
+   * Start playing the .gif
+   */
+  start: () => void;
+
+  /**
+   * Check if the .gif is playing.
+   * @returns  Boolean
+   */
+  isPlaying: () => boolean;
 }
