@@ -1,6 +1,6 @@
 //default elements
 android {
-    
+
 }
 
 repositories {
@@ -8,5 +8,5 @@ repositories {
 }
 
 dependencies {
-    compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.14'
+    compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.15'
 }
