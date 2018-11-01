@@ -71,7 +71,7 @@ The native libraries used to handle rendering GIFs for Android & iOS.
     <Gif:Gif headers="{{headersJSON}}" src="~/gifs/bill.gif" height="100" />
     <Gif:Gif src="https://media4.giphy.com/media/3uyIgVxP1qAjS/200.gif" height="200" />
   </StackLayout>
-</Page>  
+</Page>
 ```
 
 #### Angular NativeScript
@@ -136,3 +136,7 @@ registerElement("Gif", () => Gif);
 ##### recycle()
 
 * provided to speed up freeing memory <small>_advanced usage - you shouldn't need this often_</small>
+
+#### Contributors
+- [NathanaelA](https://github.com/NathanaelA) - [@CongoCart](https://twitter.com/CongoCart)
+- [NathanWalker](https://github.com/NathanWalker) - [@wwwalkerrun](https://twitter.com/wwwalkerrun)
