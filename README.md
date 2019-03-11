@@ -13,12 +13,7 @@
     <a href="https://github.com/bradmartin/nativescript-gif/stargazers">
         <img src="https://img.shields.io/github/stars/bradmartin/nativescript-gif.svg" alt="stars">
     </a>
-     <a href="https://github.com/bradmartin/nativescript-gif/network">
-        <img src="https://img.shields.io/github/forks/bradmartin/nativescript-gif.svg" alt="forks">
-    </a>
-    <a href="https://github.com/bradmartin/nativescript-gif/blob/master/LICENSE">
-        <img src="https://img.shields.io/github/license/bradmartin/nativescript-gif.svg" alt="license">
-    </a>
+    <br />
     <a href="https://paypal.me/bradwayne88">
         <img src="https://img.shields.io/badge/Donate-PayPal-green.svg" alt="donate">
     </a>
@@ -71,15 +66,15 @@ The native libraries used to handle rendering GIFs for Android & iOS.
     <Gif:Gif headers="{{headersJSON}}" src="~/gifs/bill.gif" height="100" />
     <Gif:Gif src="https://media4.giphy.com/media/3uyIgVxP1qAjS/200.gif" height="200" />
   </StackLayout>
-</Page>  
+</Page>
 ```
 
 #### Angular NativeScript
 
 ```typescript
-import { registerElement } from "nativescript-angular/element-registry";
-import { Gif } from "nativescript-gif";
-registerElement("Gif", () => Gif);
+import { registerElement } from 'nativescript-angular/element-registry';
+import { Gif } from 'nativescript-gif';
+registerElement('Gif', () => Gif);
 ```
 
 ##### HTML
@@ -93,29 +88,29 @@ registerElement("Gif", () => Gif);
 
 ## Properties
 
-* **src** - _required_
+- **src** - _required_
   Set the gif file to play.
 
-* **headers - (JSON Object)** - _optional_
+- **headers - (JSON Object)** - _optional_
   Set headers to add when loading a gif from URL
 
 ## API
 
 ##### start()
 
-* starts playing the .gif
+- starts playing the .gif
 
 ##### stop()
 
-* stops playing the .gif
+- stops playing the .gif
 
 ##### getFrameCount()
 
-* returns the number of frames in the current .gif
+- returns the number of frames in the current .gif
 
 ##### isPlaying()
 
-* returns boolean value indicating if the gif is playing.
+- returns boolean value indicating if the gif is playing.
 
 ---
 
@@ -123,16 +118,16 @@ registerElement("Gif", () => Gif);
 
 ##### getDuration()
 
-* returns the .gif duration
+- returns the .gif duration
 
 ##### reset()
 
-* resets the .gif to its initial frame
+- resets the .gif to its initial frame
 
 ##### setSpeed(speedFactor: _Number_)
 
-* sets the .gif play speed
+- sets the .gif play speed
 
 ##### recycle()
 
-* provided to speed up freeing memory <small>_advanced usage - you shouldn't need this often_</small>
+- provided to speed up freeing memory <small>_advanced usage - you shouldn't need this often_</small>
