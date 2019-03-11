@@ -13,6 +13,9 @@
     <a href="https://github.com/bradmartin/nativescript-gif/stargazers">
         <img src="https://img.shields.io/github/stars/bradmartin/nativescript-gif.svg" alt="stars">
     </a>
+     <a href="https://travis-ci.org/bradmartin/nativescript-gif">
+        <img src="https://travis-ci.org/bradmartin/nativescript-gif.svg?branch=master" alt="build status">
+    </a>
     <br />
     <a href="https://paypal.me/bradwayne88">
         <img src="https://img.shields.io/badge/Donate-PayPal-green.svg" alt="donate">
