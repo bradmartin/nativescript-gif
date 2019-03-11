@@ -8,5 +8,5 @@ repositories {
 }
 
 dependencies {
-    compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.15'
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.16'
 }

@@ -44,4 +44,30 @@ export class Gif extends View {
    * @returns  Boolean
    */
   isPlaying: () => boolean;
+
+  /**
+   * Get the frame count for a .gif.
+   * @returns  Number of frames.
+   */
+  getFrameCount(): number;
+
+  /**
+   * Android Only
+   */
+  reset(): void;
+
+  /**
+   * Android Only
+   */
+  getDuration(): number;
+
+  /**
+   * Android Only
+   */
+  setSpeed(factor: number): void;
+
+  /**
+   * Android Only
+   */
+  recycle(): void;
 }

@@ -1,28 +1,37 @@
 {
+  "defaultSeverity": "error",
+  "extends": ["tslint:recommended"],
+  "linterOptions": {
+    "exclude": ["node_modules", "hooks", "platforms", "src/index.d.ts"]
+  },
+  "jsRules": {},
   "rules": {
-    "class-name": true,
-    "comment-format": [true, "check-space"],
-    "indent": [true, "spaces"],
+    "no-reference": false,
+    "arrow-parens": false,
+    "adjacent-overload-signatures": false,
+    "max-line-length": [false, 180],
+    "member-ordering": [false],
+    "no-console": [false],
     "no-duplicate-variable": true,
-    "no-eval": true,
-    "no-internal-module": true,
-    "no-trailing-whitespace": true,
-    "no-var-keyword": true,
-    "one-line": [true, "check-open-brace", "check-whitespace"],
-    "quotemark": [false, "double"],
-    "semicolon": [true, "always"],
-    "triple-equals": [true, "allow-null-check"],
-    "typedef-whitespace": [
-      true,
-      {
-        "call-signature": "nospace",
-        "index-signature": "nospace",
-        "parameter": "nospace",
-        "property-declaration": "nospace",
-        "variable-declaration": "nospace"
-      }
+    "no-trailing-whitespace": false,
+    "object-literal-sort-keys": false,
+    "object-literal-key-quotes": false,
+    "ordered-imports": [false],
+    "interface-name": [false, "never-prefix"],
+    "only-arrow-functions": [true, "allow-named-functions"],
+    "prefer-const": true,
+    "semicolon": [false, "never"],
+    "trailing-comma": [false],
+    "variable-name": [
+      false,
+      "allow-leading-underscore",
+      "check-format",
+      "ban-keywords"
     ],
-    "variable-name": [true, "ban-keywords"],
-    "whitespace": [true, "check-branch", "check-decl", "check-operator", "check-separator", "check-type"]
-  }
+    "quotemark": [false, "single"],
+    "comment-format": [true, "check-space"],
+    "jsdoc-format": false,
+    "indent": [false, "tabs"]
+  },
+  "rulesDirectory": []
 }

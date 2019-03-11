@@ -1,48 +1,47 @@
-<Page xmlns="http://schemas.nativescript.org/tns.xsd"
-      xmlns:Gif="nativescript-gif" 
-      loaded="pageLoaded">
-      
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" 
+  xmlns:Gif="nativescript-gif" loaded="pageLoaded">
+
   <Page.actionBar>
     <ActionBar title="Gifs" backgroundColor="#009688" color="#fff" />
   </Page.actionBar>
-  
+
   <ScrollView>
-      
-  <StackLayout>
-  
-    <Label text="Gifs rule the world." class="message" textWrap="true"/>
-    
-   <GridLayout rows="140, 140, 140, 140, 140, 140" columns="*, *">
-    
-      <Gif:Gif src="{{ src }}" row="0" col="0" />
-      <Gif:Gif src="http://media.giphy.com/media/BoPUZQRQEPogo/giphy.gif"  row="0" col="1" />
-      
-      <Gif:Gif src="http://media1.giphy.com/media/3oGRFeGtgYZh6M32RW/200.gif" row="1" col="0" />
-      <Gif:Gif src="http://media3.giphy.com/media/12bVDtXPOzYwda/200.gif" row="1" col="1" />
-      
-      <Gif:Gif src="http://media4.giphy.com/media/RD1q3yvGhMMKc/200.gif" row="2" col="0" />
-      <Gif:Gif src="~/gifs/bill.gif" row="2" col="1" />
-      
-      <Gif:Gif src="~/gifs/meatwad.gif" row="3" colSpan="2" />
 
-      <Gif:Gif src="http://media4.giphy.com/media/3uyIgVxP1qAjS/200.gif" row="4" col="0" />
-      <Gif:Gif src="http://media4.giphy.com/media/BgBf6pW9qOgQU/200.gif" row="4" col="1" />
-      
-      <Gif:Gif src="~/gifs/hammer.gif" row="5" colSpan="2" />
+    <StackLayout>
 
-    </GridLayout>
-    
-    
-    <Gif:Gif src="~/gifs/meatwad.gif" id="myGif" loaded="gifLoaded" height="110" />
+      <Label text="Gifs rule the world." class="message" textWrap="true"/>
 
-    <button text="Start" tap="startGif" />
-    <button text="Stop" tap="stopGif" />
-    <Label text="{{ frames }}" class="message" visibility="{{ frames ? 'visible' : 'collapsed' }}" textWrap="true" />
-    <button text="Frame Count" tap="getFrames" />
-    <Label text="{{ duration }}" textWrap="true" />    
-  </StackLayout>
-  
- </ScrollView>
+      <GridLayout rows="140, 140, 140, 140, 140, 140" columns="*, *">
+
+        <Gif:Gif src="{{ src }}" row="0" col="0" />
+        <Gif:Gif src="http://media.giphy.com/media/BoPUZQRQEPogo/giphy.gif" row="0" col="1" />
+
+        <Gif:Gif src="http://media1.giphy.com/media/3oGRFeGtgYZh6M32RW/200.gif" row="1" col="0" />
+        <Gif:Gif src="http://media3.giphy.com/media/12bVDtXPOzYwda/200.gif" row="1" col="1" />
+
+        <Gif:Gif src="http://media4.giphy.com/media/RD1q3yvGhMMKc/200.gif" row="2" col="0" />
+        <Gif:Gif src="~/gifs/bill.gif" row="2" col="1" />
+
+        <Gif:Gif src="~/gifs/meatwad.gif" row="3" colSpan="2" />
+
+        <Gif:Gif src="http://media4.giphy.com/media/3uyIgVxP1qAjS/200.gif" row="4" col="0" />
+        <Gif:Gif src="http://media4.giphy.com/media/BgBf6pW9qOgQU/200.gif" row="4" col="1" />
+
+        <Gif:Gif src="~/gifs/hammer.gif" row="5" colSpan="2" />
+
+      </GridLayout>
+
+
+      <Gif:Gif src="~/gifs/meatwad.gif" id="myGif" loaded="gifLoaded" height="110" />
+
+      <button text="Start" tap="startGif" />
+      <button text="Stop" tap="stopGif" />
+      <Label text="{{ frames }}" class="message" visibility="{{ frames ? 'visible' : 'collapsed' }}" textWrap="true" />
+      <button text="Frame Count" tap="getFrames" />
+      <Label text="{{ duration }}" textWrap="true" />
+    </StackLayout>
+
+  </ScrollView>
 
 
 </Page>  

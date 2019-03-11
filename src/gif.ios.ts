@@ -1,5 +1,4 @@
 import { knownFolders } from 'tns-core-modules/file-system';
-import { View } from 'tns-core-modules/ui/core/view';
 import { GifCommon, headersProperty, srcProperty } from './gif.common';
 import { PercentLength } from 'tns-core-modules/ui/styling/style-properties';
 
@@ -12,7 +11,9 @@ export class Gif extends GifCommon {
 
   constructor() {
     super();
-    this.nativeView = FLAnimatedImageView.alloc().initWithFrame(CGRectMake(0, 0, 100, 100));
+    this.nativeView = FLAnimatedImageView.alloc().initWithFrame(
+      CGRectMake(0, 0, 100, 100)
+    );
     this.nativeView.clipsToBounds = true;
     this._headers = null;
     this._src = null;
@@ -110,14 +111,19 @@ export class Gif extends GifCommon {
       }
       request.HTTPMethod = 'GET';
       let session = NSURLSession.sharedSession;
-      let task = session.dataTaskWithRequestCompletionHandler(request, (data, response, err) => {
-        if (err) {
-          console.log('Error loading Gif: ' + err.localizedDescription);
-        } else {
-          this._animatedImage = FLAnimatedImage.animatedImageWithGIFData(data);
-          this._setImage();
+      let task = session.dataTaskWithRequestCompletionHandler(
+        request,
+        (data, response, err) => {
+          if (err) {
+            console.log('Error loading Gif: ' + err.localizedDescription);
+          } else {
+            this._animatedImage = FLAnimatedImage.animatedImageWithGIFData(
+              data
+            );
+            this._setImage();
+          }
         }
-      });
+      );
       task.resume();
     } else {
       const data = NSData.dataWithContentsOfURL(nsUrl);
@@ -137,7 +143,10 @@ export class Gif extends GifCommon {
       console.log(ex);
     }
 
-    if (isNaN(PercentLength.toDevicePixels(this.width)) || isNaN(PercentLength.toDevicePixels(this.height))) {
+    if (
+      isNaN(PercentLength.toDevicePixels(this.width)) ||
+      isNaN(PercentLength.toDevicePixels(this.height))
+    ) {
       this.requestLayout();
     }
   }
