@@ -28,19 +28,7 @@
 
 ## Installation
 
-#### NS 4X
-
 `tns plugin add nativescript-gif`
-
-#### NS 3x
-
-`tns plugin add nativescript-gif@3.1.1`
-
-#### NS 2x
-
-`tns plugin add nativescript-gif@1.0.9`
-
----
 
 The native libraries used to handle rendering GIFs for Android & iOS.
 
@@ -69,7 +57,7 @@ The native libraries used to handle rendering GIFs for Android & iOS.
 </Page>
 ```
 
-#### Angular NativeScript
+### NativeScript Angular
 
 ```typescript
 import { registerElement } from 'nativescript-angular/element-registry';
