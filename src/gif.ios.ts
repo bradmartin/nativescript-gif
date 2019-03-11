@@ -1,8 +1,8 @@
+/// <reference path="./typings/FLAnimatedImage.d.ts" />
+
 import { knownFolders } from 'tns-core-modules/file-system';
 import { GifCommon, headersProperty, srcProperty } from './gif.common';
 import { PercentLength } from 'tns-core-modules/ui/styling/style-properties';
-
-declare const NSString, FLAnimatedImage, FLAnimatedImageView;
 
 export class Gif extends GifCommon {
   private _animatedImage: any;
