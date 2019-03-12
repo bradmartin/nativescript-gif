@@ -2,7 +2,14 @@
   "defaultSeverity": "error",
   "extends": ["tslint:recommended"],
   "linterOptions": {
-    "exclude": ["node_modules", "hooks", "platforms", "src/index.d.ts"]
+    "exclude": [
+      "node_modules",
+      "hooks",
+      "platforms",
+      "src/index.d.ts",
+      "src/typings/",
+      "src/typings/FLAnimatedImage.d.ts"
+    ]
   },
   "jsRules": {},
   "rules": {
@@ -11,6 +18,7 @@
     "adjacent-overload-signatures": false,
     "max-line-length": [false, 180],
     "member-ordering": [false],
+    "member-access": false,
     "no-console": [false],
     "no-duplicate-variable": true,
     "no-trailing-whitespace": false,
@@ -33,5 +41,8 @@
     "jsdoc-format": false,
     "indent": [false, "tabs"]
   },
-  "rulesDirectory": []
+  "rulesDirectory": [],
+  "exclude": [
+    "typings"
+  ]
 }

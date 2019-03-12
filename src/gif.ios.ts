@@ -1,3 +1,4 @@
+/// <reference path="./node_modules/tns-platform-declarations/ios.d.ts" />
 /// <reference path="./typings/FLAnimatedImage.d.ts" />
 
 import { knownFolders } from 'tns-core-modules/file-system';
@@ -50,7 +51,7 @@ export class Gif extends GifCommon {
         }
         // Using a local .gif
         this._animatedImage = FLAnimatedImage.animatedImageWithGIFData(
-          NSData.dataWithContentsOfFile(NSString.stringWithString(value))
+          NSData.dataWithContentsOfFile(NSString.stringWithString(value) as any)
         );
         // We need to set the image in case the GIF is not from an URL
         this._setImage();
@@ -103,15 +104,15 @@ export class Gif extends GifCommon {
     const nsUrl = NSURL.URLWithString(url);
     if (headers) {
       const request = NSMutableURLRequest.requestWithURL(nsUrl);
-      for (let property in headers) {
+      for (const property in headers) {
         if (headers.hasOwnProperty(property)) {
           console.log('headers: ' + property + ', value: ' + headers[property]);
           request.addValueForHTTPHeaderField(headers[property], property);
         }
       }
       request.HTTPMethod = 'GET';
-      let session = NSURLSession.sharedSession;
-      let task = session.dataTaskWithRequestCompletionHandler(
+      const session = NSURLSession.sharedSession;
+      const task = session.dataTaskWithRequestCompletionHandler(
         request,
         (data, response, err) => {
           if (err) {

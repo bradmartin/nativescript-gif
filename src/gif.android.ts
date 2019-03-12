@@ -25,14 +25,18 @@ export class Gif extends GifCommon {
    * Stop playing the .gif
    */
   public stop(): void {
-    if (this._drawable) this._drawable.stop();
+    if (this._drawable) {
+      this._drawable.stop();
+    }
   }
 
   /**
    * Start playing the .gif
    */
   public start(): void {
-    if (this._drawable) this._drawable.start();
+    if (this._drawable) {
+      this._drawable.start();
+    }
   }
 
   /**
@@ -74,11 +78,15 @@ export class Gif extends GifCommon {
   }
 
   public setSpeed(factor: number): void {
-    if (this._drawable) this._drawable.setSpeed(factor);
+    if (this._drawable) {
+      this._drawable.setSpeed(factor);
+    }
   }
 
   public recycle(): void {
-    if (this._drawable) this._drawable.recycle();
+    if (this._drawable) {
+      this._drawable.recycle();
+    }
   }
 
   [headersProperty.setNative](value) {
@@ -114,14 +122,16 @@ export class Gif extends GifCommon {
         this._drawable = new pl.droidsonroids.gif.GifDrawable(value);
         this.nativeView.setImageDrawable(this._drawable);
       } else {
-        let requestOptions: any = { url: value, method: 'GET' };
+        const requestOptions: any = { url: value, method: 'GET' };
         if (this._headers !== null) {
           requestOptions.headers = this._headers;
         }
         HttpRequest(requestOptions).then(
           r => {
             if (r.statusCode === 200) {
-              this._drawable = new pl.droidsonroids.gif.GifDrawable(r.content.raw.toByteArray());
+              this._drawable = new pl.droidsonroids.gif.GifDrawable(
+                r.content.raw.toByteArray()
+              );
               this.nativeView.setImageDrawable(this._drawable);
             } else {
               console.log('error getting image: ' + r.statusCode);
