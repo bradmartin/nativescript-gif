@@ -77,6 +77,13 @@ registerElement('Gif', () => Gif);
 </StackLayout>
 ```
 
+### Bundling Note:
+Be sure that you have your `.gifs` added to the globs of the CopyWebpackPlugin as part of your webpack.config.
+
+```javascript
+   { from: { glob: '**/*.gif' } }
+```
+
 ## Properties
 
 - **src** - _required_
