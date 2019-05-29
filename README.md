@@ -78,8 +78,8 @@ registerElement('Gif', () => Gif);
 ```
 
 ### Bundling Note:
+Demo app sample: https://github.com/bradmartin/nativescript-gif/blob/master/demo/webpack.config.js#L218
 Be sure that you have your `.gifs` added to the globs of the CopyWebpackPlugin as part of your webpack.config.
-
 ```javascript
    { from: { glob: '**/*.gif' } }
 ```
