@@ -87,8 +87,7 @@ export class Gif extends GifCommon {
    * @returns  Boolean
    */
   public isPlaying(): boolean {
-    const isPlaying = this.nativeView.animatedImage.isAnimating();
-    return isPlaying;
+    return this.nativeView.animating;
   }
 
   /**
