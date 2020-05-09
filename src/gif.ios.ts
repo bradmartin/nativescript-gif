@@ -83,6 +83,17 @@ export class Gif extends GifCommon {
   }
 
   /**
+   * Restarts the .gif
+   */
+  public reset(): void {
+    var temp = this.nativeView.animatedImage;
+    this.nativeView.animatedImage = null;
+    this.nativeView.animatedImage = temp;
+
+    temp = null;
+  }
+
+  /**
    * Check if the .gif is playing.
    * @returns  Boolean
    */

@@ -52,7 +52,7 @@ export class Gif extends View {
   getFrameCount(): number;
 
   /**
-   * Android Only
+   * resets the .gif to its initial frame
    */
   reset(): void;
 
