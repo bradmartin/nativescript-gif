@@ -2,8 +2,8 @@
 /// <reference path="./typings/FLAnimatedImage.d.ts" />
 
 import { knownFolders } from 'tns-core-modules/file-system';
-import { GifCommon, headersProperty, srcProperty } from './gif.common';
 import { PercentLength } from 'tns-core-modules/ui/styling/style-properties';
+import { GifCommon, headersProperty, srcProperty } from './gif.common';
 
 export class Gif extends GifCommon {
   private _animatedImage: any;
@@ -86,7 +86,7 @@ export class Gif extends GifCommon {
    * Restarts the .gif
    */
   public reset(): void {
-    var temp = this.nativeView.animatedImage;
+    let temp = this.nativeView.animatedImage;
     this.nativeView.animatedImage = null;
     this.nativeView.animatedImage = temp;
 

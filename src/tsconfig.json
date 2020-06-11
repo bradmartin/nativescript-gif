@@ -4,27 +4,22 @@
     "module": "commonjs",
     "declaration": false,
     "removeComments": true,
-    "skipLibCheck": true,
     "noLib": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "skipLibCheck": true,
     "lib": ["es6", "dom"],
     "sourceMap": true,
     "pretty": false,
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
-    "noEmitHelpers": false,
+    "noEmitHelpers": true,
     "noEmitOnError": false,
     "noImplicitAny": false,
     "noImplicitReturns": true,
     "noImplicitUseStrict": false,
     "noFallthroughCasesInSwitch": true
   },
-  "exclude": ["node_modules", "demo-ng", "demo"],
-  "files": [
-    "gif.android.ts",
-    "gif.common.ts",
-    "gif.ios.ts"
-  ],
+  "exclude": ["node_modules"],
   "compileOnSave": false
 }

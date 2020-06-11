@@ -12,24 +12,25 @@
   },
   "scripts": {
     "tsc": "tsc -skipLibCheck",
-    "build": "npm i && tsc && npm run build.native",
-    "build.native": "node scripts/build-native.js",
-    "test.android": "npm i && npm run tsc && npm run tslint && cd ../demo && tns build android && tns test android --justlaunch",
-    "test.ios": "npm i && npm run tsc && npm run tslint && cd ../demo && tns build ios && tns test ios --justlaunch",
+    "build": "npm i && tsc",
     "tslint": "cd .. && tslint \"**/*.ts\" --config tslint.json --exclude \"**/node_modules/**\" --exclude \"*demo*/platforms/**\"",
-    "plugin.link": "npm link && cd ../demo && npm link nativescript-geolocation && cd ../src",
-    "plugin.tscwatch": "npm run tsc -- -w",
-    "demo.ios": "npm i && npm run tsc && cd ../demo && tns run ios --syncAllFiles",
-    "demo.android": "npm i && npm run tsc && cd ../demo && tns run android --syncAllFiles",
     "ci.tslint": "npm i && tslint '**/*.ts' --config '../tslint.json' --exclude '**/node_modules/**'",
+    "demo.ios": "npm run setup && cd ../demo && tns run ios",
+    "demo.android": "npm run setup && cd ../demo && tns run android",
+    "setup": "npm i && tsc",
     "generate.typings.ios": "cd ../demo && TNS_DEBUG_METADATA_PATH=\"$(pwd)/metadata\" tns build ios && TNS_TYPESCRIPT_DECLARATIONS_PATH=\"$(pwd)/typings\" tns build ios && echo 'Now look for your library typings in demo/typings!'"
   },
   "lint-staged": {
-    "*.{ts, js, json, scss, md, xml, html}": [
-      "tslint",
+    "**/*.{js, css, ts, json, scss, html, xml, md}": [
       "prettier --write",
       "git add"
     ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "npm run tslint"
+    }
   },
   "repository": {
     "type": "git",
