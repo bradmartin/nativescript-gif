@@ -4,25 +4,20 @@
 <h4 align="center">NativeScript plugin to use GIFs in your application.</h4>
 
 <p align="center">
+ <a href="https://www.npmjs.com/package/nativescript-gif">
+        <img src="https://github.com/nstudio/nativescript-gif/workflows/Build%20CI/badge.svg" alt="Action Build">
+    </a>
     <a href="https://www.npmjs.com/package/nativescript-gif">
         <img src="https://img.shields.io/npm/v/nativescript-gif.svg" alt="npm">
     </a>
     <a href="https://www.npmjs.com/package/nativescript-gif">
         <img src="https://img.shields.io/npm/dt/nativescript-gif.svg?label=npm%20downloads" alt="npm">
     </a>
-    <a href="https://github.com/bradmartin/nativescript-gif/stargazers">
-        <img src="https://img.shields.io/github/stars/bradmartin/nativescript-gif.svg" alt="stars">
-    </a>
-     <a href="https://travis-ci.org/bradmartin/nativescript-gif">
-        <img src="https://travis-ci.org/bradmartin/nativescript-gif.svg?branch=master" alt="build status">
-    </a>
     <br />
-    <a href="https://paypal.me/bradwayne88">
-        <img src="https://img.shields.io/badge/Donate-PayPal-green.svg" alt="donate">
-    </a>
     <a href="http://nstudio.io">
       <img src="./images/nstudio-banner.png" alt="nStudio banner">
     </a>
+     <br />
     <h5 align="center">Do you need assistance on your project or plugin? Contact the nStudio team anytime at <a href="mailto:team@nstudio.io">team@nstudio.io</a> to get up to speed with the best practices in mobile and web app development.
     </h5>
 </p>
@@ -78,10 +73,16 @@ registerElement('Gif', () => Gif);
 ```
 
 ### Bundling Note:
+
 Demo app sample: https://github.com/bradmartin/nativescript-gif/blob/master/demo/webpack.config.js#L218
 Be sure that you have your `.gifs` added to the globs of the CopyWebpackPlugin as part of your webpack.config.
+
 ```javascript
-   { from: { glob: '**/*.gif' } }
+{
+  from: {
+    glob: '**/*.gif';
+  }
+}
 ```
 
 ## Properties
