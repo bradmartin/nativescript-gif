@@ -1,6 +1,6 @@
 {
   "name": "nativescript-gif",
-  "version": "4.0.5",
+  "version": "4.0.6",
   "description": "NativeScript plugin to use .gifs",
   "main": "gif",
   "typings": "gif.d.ts",
