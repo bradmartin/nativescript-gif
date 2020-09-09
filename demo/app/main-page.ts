@@ -1,9 +1,9 @@
 import {
   Application,
-
-
-  Color, Device,
-  isAndroid, Observable
+  Color,
+  Device,
+  isAndroid,
+  Observable
 } from '@nativescript/core';
 import { Gif } from 'nativescript-gif';
 
