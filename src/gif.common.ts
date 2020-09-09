@@ -1,4 +1,4 @@
-import { View, Property } from 'tns-core-modules/ui/core/view';
+import { Property, View } from '@nativescript/core';
 
 export class GifCommon extends View {
   public src: string;
@@ -10,17 +10,17 @@ export class GifCommon extends View {
 
 export const srcProperty = new Property<GifCommon, string>({
   name: 'src',
-  defaultValue: ''
+  defaultValue: '',
 });
 srcProperty.register(GifCommon);
 
 export const headersProperty = new Property<GifCommon, any>({
-  name: 'headers'
+  name: 'headers',
 });
 headersProperty.register(GifCommon);
 
 export const isLoadingProperty = new Property<GifCommon, boolean>({
   name: 'isLoading',
-  defaultValue: false
+  defaultValue: false,
 });
 isLoadingProperty.register(GifCommon);

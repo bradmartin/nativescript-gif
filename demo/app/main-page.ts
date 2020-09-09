@@ -1,8 +1,10 @@
-import { Observable } from 'tns-core-modules/data/observable';
-import * as app from 'tns-core-modules/application';
-import { device, isAndroid } from 'tns-core-modules/platform';
-import { Color } from 'tns-core-modules/color';
-import * as http from 'tns-core-modules/http';
+import {
+  Application,
+
+
+  Color, Device,
+  isAndroid, Observable
+} from '@nativescript/core';
 import { Gif } from 'nativescript-gif';
 
 const data = new Observable();
@@ -20,8 +22,8 @@ export function pageLoaded(args) {
     return data.set('src', '~/gifs/darthRide.gif');
   }, 3000);
 
-  if (isAndroid && device.sdkVersion >= '21') {
-    const window = app.android.startActivity.getWindow();
+  if (isAndroid && Device.sdkVersion >= '21') {
+    const window = Application.android.startActivity.getWindow();
     window.setStatusBarColor(new Color('#00695C').android);
   }
 }

@@ -42,7 +42,5 @@
     "indent": [false, "tabs"]
   },
   "rulesDirectory": [],
-  "exclude": [
-    "typings"
-  ]
+  "exclude": ["typings"]
 }

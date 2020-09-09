@@ -1,8 +1,4 @@
-/// <reference path="./node_modules/tns-platform-declarations/ios.d.ts" />
-/// <reference path="./typings/FLAnimatedImage.d.ts" />
-
-import { knownFolders } from 'tns-core-modules/file-system';
-import { PercentLength } from 'tns-core-modules/ui/styling/style-properties';
+import { knownFolders, PercentLength } from '@nativescript/core';
 import { GifCommon, headersProperty, srcProperty } from './gif.common';
 
 export class Gif extends GifCommon {
@@ -116,7 +112,6 @@ export class Gif extends GifCommon {
       const request = NSMutableURLRequest.requestWithURL(nsUrl);
       for (const property in headers) {
         if (headers.hasOwnProperty(property)) {
-          console.log('headers: ' + property + ', value: ' + headers[property]);
           request.addValueForHTTPHeaderField(headers[property], property);
         }
       }
@@ -139,9 +134,7 @@ export class Gif extends GifCommon {
     } else {
       const data = NSData.dataWithContentsOfURL(nsUrl);
       // TODO: why is this not working here for giphy urls haven't tried others, maybe header related?
-      console.log('data', data);
       this._animatedImage = FLAnimatedImage.animatedImageWithGIFData(data);
-      console.log('animatedImage', this._animatedImage);
       this._setImage();
     }
   }

@@ -1,7 +1,5 @@
-import { request as HttpRequest } from 'tns-core-modules/http';
-import { View } from 'tns-core-modules/ui/core/view';
-import { knownFolders } from 'tns-core-modules/file-system';
-import { GifCommon, srcProperty, headersProperty } from './gif.common';
+import { Http, knownFolders } from '@nativescript/core';
+import { GifCommon, headersProperty, srcProperty } from './gif.common';
 
 declare var pl;
 
@@ -126,8 +124,8 @@ export class Gif extends GifCommon {
         if (this._headers !== null) {
           requestOptions.headers = this._headers;
         }
-        HttpRequest(requestOptions).then(
-          r => {
+        Http.request(requestOptions).then(
+          (r) => {
             if (r.statusCode === 200) {
               this._drawable = new pl.droidsonroids.gif.GifDrawable(
                 r.content.raw.toByteArray()
@@ -137,7 +135,7 @@ export class Gif extends GifCommon {
               console.log('error getting image: ' + r.statusCode);
             }
           },
-          err => {
+          (err) => {
             console.log(err);
           }
         );

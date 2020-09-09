@@ -14,19 +14,16 @@
         <img src="https://img.shields.io/npm/dt/nativescript-gif.svg?label=npm%20downloads" alt="npm">
     </a>
     <br />
-    <a href="http://nstudio.io">
-      <img src="./images/nstudio-banner.png" alt="nStudio banner">
-    </a>
-     <br />
-    <h5 align="center">Do you need assistance on your project or plugin? Contact the nStudio team anytime at <a href="mailto:team@nstudio.io">team@nstudio.io</a> to get up to speed with the best practices in mobile and web app development.
-    </h5>
 </p>
 
 ---
 
 ## Installation
 
+NativeScript Version 7+:
 `tns plugin add nativescript-gif`
+NativeScript Version prior to 7:
+`tns plugin add nativescript-gif@4.0.6`
 
 The native libraries used to handle rendering GIFs for Android & iOS.
 
