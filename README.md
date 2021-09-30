@@ -70,15 +70,30 @@ registerElement('Gif', () => Gif);
 ```
 
 ### Bundling Note:
-
-Demo app sample: https://github.com/bradmartin/nativescript-gif/blob/master/demo/webpack.config.js#L218
 Be sure that you have your `.gifs` added to the globs of the CopyWebpackPlugin as part of your webpack.config.
+
+#### Prior to Webpack 5
+Demo app sample: https://github.com/bradmartin/nativescript-gif/blob/master/demo/webpack.config.js#L282
 
 ```javascript
 {
   from: {
     glob: '**/*.gif';
   }
+}
+```
+
+#### Webpack 5+
+
+```javascript
+const webpack = require('@nativescript/webpack')
+
+module.exports = env => {
+  webpack.init(env)
+
+  webpack.Utils.addCopyRule('**/*.gif')
+
+  return webpack.resolveConfig()
 }
 ```
 
