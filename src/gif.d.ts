@@ -1,7 +1,7 @@
 /**
  * Contains the Gif class, which represents a gif widget.
  */
-import { View } from 'tns-core-modules/ui/core/view';
+import { View } from '@nativescript/core';
 
 /**
  * Represents a class that provides functionality for loading gif(s).
